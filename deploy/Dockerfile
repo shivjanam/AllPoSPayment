@@ -77,9 +77,9 @@ RUN mkdir -p /app /var/log/supervisor /home/appuser/.vnc /home/appuser/.config/o
 COPY --from=builder /app/composeApp/build/compose/jars/*.jar /app/iso8583studio.jar
 
 # Copy startup scripts
-COPY deploy/scripts/start.sh /app/start.sh
-COPY deploy/scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY deploy/scripts/openbox-rc.xml /home/appuser/.config/openbox/rc.xml
+COPY scripts/start.sh /app/start.sh
+COPY scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY scripts/openbox-rc.xml /home/appuser/.config/openbox/rc.xml
 
 RUN chmod +x /app/start.sh && \
     chown -R appuser:appuser /home/appuser /app
