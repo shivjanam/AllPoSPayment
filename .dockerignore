@@ -11,9 +11,8 @@
 **/build/
 !composeApp/build/compose/jars/
 
-# Gradle
+# Gradle cache only (keep wrapper!)
 .gradle
-gradle/wrapper/gradle-wrapper.jar
 
 # OS files
 .DS_Store
