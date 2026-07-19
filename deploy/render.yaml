@@ -1,0 +1,19 @@
+# Render.com Deployment Configuration
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: iso8583studio-demo
+    runtime: docker
+    dockerfilePath: ./deploy/Dockerfile
+    dockerContext: .
+    region: singapore  # Closest to India for low latency
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: RESOLUTION
+        value: 1280x800x24
+      - key: TZ
+        value: Asia/Kolkata
+    # Free tier: 750 hours/month, sleeps after 15 min inactivity
+    # Auto-wakes on incoming request (30-60s cold start)

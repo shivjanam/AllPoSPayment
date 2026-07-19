@@ -1,0 +1,51 @@
+# Fly.io Deployment Configuration
+# Deploy: flyctl launch --config deploy/fly.toml
+
+app = "iso8583studio-demo"
+primary_region = "sin"  # Singapore - closest to India
+
+[build]
+  dockerfile = "deploy/Dockerfile"
+  ignorefile = "deploy/.dockerignore"
+
+[env]
+  RESOLUTION = "1280x800x24"
+  TZ = "Asia/Kolkata"
+
+[http_service]
+  internal_port = 6080
+  force_https = true
+  auto_stop_machines = true      # Sleep when idle (free tier friendly)
+  auto_start_machines = true     # Wake on request
+  min_machines_running = 0       # Allow full sleep
+  processes = ["app"]
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 6080
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.http_checks]]
+    interval = 30000
+    grace_period = "60s"
+    method = "get"
+    path = "/"
+    protocol = "http"
+    timeout = 10000
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1

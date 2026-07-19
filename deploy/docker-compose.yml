@@ -1,0 +1,49 @@
+# ISO8583Studio - Local Development Docker Compose
+# Usage: docker-compose up --build
+
+services:
+  iso8583studio:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: iso8583studio-demo
+    ports:
+      - "6080:6080"  # noVNC web interface
+    environment:
+      - RESOLUTION=1280x800x24
+      - TZ=Asia/Kolkata
+    # Resource limits for free tier compatibility
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+  # Optional: Mock ISO8583 host for self-contained demos
+  mock-host:
+    image: eclipse-temurin:21-jre-alpine
+    container_name: iso8583-mock-host
+    command: >
+      sh -c "echo 'Mock ISO8583 host listening on port 8583...' && 
+             while true; do nc -l -p 8583 -e echo 'ISO8583 Mock Response'; done"
+    ports:
+      - "8583:8583"
+    profiles:
+      - with-mock
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+
+networks:
+  default:
+    name: iso8583-network

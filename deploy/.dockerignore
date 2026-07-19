@@ -1,0 +1,42 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+*.iml
+.vscode
+
+# Build outputs (except jars for lite build)
+**/build/
+!composeApp/build/compose/jars/
+
+# Gradle
+.gradle
+gradle/wrapper/gradle-wrapper.jar
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Test files
+**/*Test*
+**/test/
+
+# Unnecessary source directories
+pyemv-master/
+pyemv-master.zip
+firmware/
+
+# Large binary files
+*.zip
+*.tar.gz
+*.exe
+*.msi
+*.dmg
+*.deb
