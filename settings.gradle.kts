@@ -36,6 +36,6 @@ include(":composeApp")
 //include(":kmp-payment-crypto")
 //include(":core-crypto")
 //include(":payment-crypto")
-include(":api")
+//include(":api")  // Commented out - module not in repo
 include(":cryptocalc")
 include(":iso-core-lib")
