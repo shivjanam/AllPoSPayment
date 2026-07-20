@@ -35,7 +35,7 @@ RUN ./gradlew :composeApp:packageUberJarForCurrentOS --no-daemon
 # ============================================
 FROM eclipse-temurin:21-jre
 
-LABEL maintainer="AiCortex Solutions Pvt. Ltd."
+LABEL maintainer="POS Expert Solutions Pvt Ltd"
 LABEL description="ISO8583Studio Demo - noVNC Remote Desktop"
 
 # Install X11, VNC, noVNC and dependencies

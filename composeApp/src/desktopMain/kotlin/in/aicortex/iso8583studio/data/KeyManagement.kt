@@ -52,7 +52,7 @@ class KeyManagement(
     var setDifferentKEK: ((String) -> ByteArray?)? = null
 
     companion object {
-        val KEY_VERSION: String = "Sourabh Kaushik, sk@iso8583.studio"
+        val KEY_VERSION: String = "POS Expert, support@posexpert.in"
 
         val kekEncrypter: EncrDecrHandler = EncrDecrHandler(
             CipherType.TRIPLE_DES,

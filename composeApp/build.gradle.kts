@@ -95,8 +95,8 @@ compose.desktop {
             packageName = "ISO8583Studio"
             packageVersion = "1.0.14"
             description = "ISO8583 Message Processing Studio"
-            copyright = "© 2025 AiCortex Solutions Pvt. Ltd. All rights reserved."
-            vendor = "AiCortex Solutions Pvt. Ltd."
+            copyright = "© 2025 POS Expert Solutions Pvt Ltd. All rights reserved."
+            vendor = "POS Expert Solutions Pvt Ltd"
 
             // Windows specific configuration
             windows {
@@ -118,7 +118,7 @@ compose.desktop {
                 // Set the icon for macOS
                 iconFile.set(project.file("resources/mac/app.icns"))
                 // Additional macOS settings
-                bundleID = "in.aicortex.iso8583studio"
+                bundleID = "in.posexpert.iso8583studio"
                 appCategory = "public.app-category.developer-tools"
                 // Configure DMG options if needed
                 dmgPackageVersion = packageVersion

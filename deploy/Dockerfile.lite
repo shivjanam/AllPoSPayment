@@ -4,7 +4,7 @@
 
 FROM eclipse-temurin:21-jre
 
-LABEL maintainer="AiCortex Solutions Pvt. Ltd."
+LABEL maintainer="POS Expert Solutions Pvt Ltd"
 LABEL description="ISO8583Studio Demo - noVNC (Lite)"
 
 # Install minimal X11 + VNC dependencies

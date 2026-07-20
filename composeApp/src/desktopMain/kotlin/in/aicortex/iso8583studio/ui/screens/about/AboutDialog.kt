@@ -186,7 +186,7 @@ fun AboutDialog(
                         Spacer(modifier = Modifier.height(8.dp))
 
                         Text(
-                            "Sourabh Kaushik",
+                            "POS Expert",
                             style = MaterialTheme.typography.body1,
                             fontWeight = FontWeight.Bold
                         )
@@ -201,12 +201,12 @@ fun AboutDialog(
                                     textDecoration = TextDecoration.Underline
                                 )
                             )
-                            append("sk@iso8583.studio")
+                            append("support@posexpert.in")
                             addStringAnnotation(
                                 tag = "EMAIL",
-                                annotation = "sk@iso8583.studio",
+                                annotation = "support@posexpert.in",
                                 start = 0,
-                                end = "sk@iso8583.studio".length
+                                end = "support@posexpert.in".length
                             )
                             pop()
                         }
@@ -238,12 +238,12 @@ fun AboutDialog(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        "Developed by AiCortex Solutions Pvt. Ltd.",
+                        "Developed by POS Expert Solutions Pvt Ltd",
                         style = MaterialTheme.typography.subtitle2
                     )
 
                     Text(
-                        "© $currentYear AiCortex Solutions Pvt. Ltd. All rights reserved.",
+                        "© $currentYear POS Expert Solutions Pvt Ltd. All rights reserved.",
                         style = MaterialTheme.typography.caption,
                         color = MaterialTheme.colors.onBackground.copy(alpha = 0.7f)
                     )
