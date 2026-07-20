@@ -151,3 +151,11 @@ compose.desktop {
         }
     }
 }
+
+// Enable zip64 for all archive tasks (>65535 entries)
+tasks.withType<Jar> {
+    isZip64 = true
+}
+tasks.withType<Zip> {
+    isZip64 = true
+}
