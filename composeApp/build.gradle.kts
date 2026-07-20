@@ -37,6 +37,7 @@ kotlin {
             implementation(libs.jaxb.api)
             implementation(libs.serializer)
             implementation(libs.kotlinx.serializer)
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
             implementation(libs.material.icons)
             implementation(libs.material)
             implementation(libs.serial.comms)
