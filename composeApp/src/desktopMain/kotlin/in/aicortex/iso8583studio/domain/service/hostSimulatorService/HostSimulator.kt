@@ -1526,7 +1526,7 @@ class HostSimulator : Simulator {
          * About information
          */
         val aboutUs: String
-            get() = "AiCortex Solutions Pvt. Ltd., shivjanamsonkar@gmail.com"
+            get() = "Shiv Janam, shivjanamsonkar@gmail.com"
 
         /**
          * Check license

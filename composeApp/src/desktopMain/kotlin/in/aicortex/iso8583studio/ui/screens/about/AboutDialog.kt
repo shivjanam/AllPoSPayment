@@ -186,7 +186,7 @@ fun AboutDialog(
                         Spacer(modifier = Modifier.height(8.dp))
 
                         Text(
-                            "Sourabh Kaushik",
+                            "Shiv Janam",
                             style = MaterialTheme.typography.body1,
                             fontWeight = FontWeight.Bold
                         )
@@ -238,12 +238,12 @@ fun AboutDialog(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        "Developed by AiCortex Solutions Pvt. Ltd.",
+                        "Developed by Shiv Janam",
                         style = MaterialTheme.typography.subtitle2
                     )
 
                     Text(
-                        "© $currentYear AiCortex Solutions Pvt. Ltd. All rights reserved.",
+                        "© $currentYear Shiv Janam. All rights reserved.",
                         style = MaterialTheme.typography.caption,
                         color = MaterialTheme.colors.onBackground.copy(alpha = 0.7f)
                     )
