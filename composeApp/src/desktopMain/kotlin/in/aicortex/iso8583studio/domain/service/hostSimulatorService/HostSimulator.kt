@@ -1526,7 +1526,7 @@ class HostSimulator : Simulator {
          * About information
          */
         val aboutUs: String
-            get() = "POS Expert Solutions Pvt Ltd, support@posexpert.in"
+            get() = "AiCortex Solutions Pvt. Ltd., shivjanamsonkar@gmail.com"
 
         /**
          * Check license

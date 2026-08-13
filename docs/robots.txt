@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /images/
 
-Sitemap: https://iso8583.studio/sitemap.xml
+Sitemap: https://posAllInOne.vercel.app/sitemap.xml
 
 User-agent: Googlebot
 Allow: /

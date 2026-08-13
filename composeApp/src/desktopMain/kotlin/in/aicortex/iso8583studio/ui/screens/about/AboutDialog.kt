@@ -186,7 +186,7 @@ fun AboutDialog(
                         Spacer(modifier = Modifier.height(8.dp))
 
                         Text(
-                            "POS Expert",
+                            "Sourabh Kaushik",
                             style = MaterialTheme.typography.body1,
                             fontWeight = FontWeight.Bold
                         )
@@ -201,12 +201,12 @@ fun AboutDialog(
                                     textDecoration = TextDecoration.Underline
                                 )
                             )
-                            append("support@posexpert.in")
+                            append("shivjanamsonkar@gmail.com")
                             addStringAnnotation(
                                 tag = "EMAIL",
-                                annotation = "support@posexpert.in",
+                                annotation = "shivjanamsonkar@gmail.com",
                                 start = 0,
-                                end = "support@posexpert.in".length
+                                end = "shivjanamsonkar@gmail.com".length
                             )
                             pop()
                         }
@@ -238,12 +238,12 @@ fun AboutDialog(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        "Developed by POS Expert Solutions Pvt Ltd",
+                        "Developed by AiCortex Solutions Pvt. Ltd.",
                         style = MaterialTheme.typography.subtitle2
                     )
 
                     Text(
-                        "© $currentYear POS Expert Solutions Pvt Ltd. All rights reserved.",
+                        "© $currentYear AiCortex Solutions Pvt. Ltd. All rights reserved.",
                         style = MaterialTheme.typography.caption,
                         color = MaterialTheme.colors.onBackground.copy(alpha = 0.7f)
                     )
@@ -258,12 +258,12 @@ fun AboutDialog(
                                 textDecoration = TextDecoration.Underline
                             )
                         )
-                        append("www.iso8583.studio")
+                        append("https://posAllInOne.vercel.app/")
                         addStringAnnotation(
                             tag = "URL",
-                            annotation = "https://iso8583.studio",
+                            annotation = "https://posAllInOne.vercel.app/",
                             start = 0,
-                            end = "www.iso8583.studio".length
+                            end = "https://posAllInOne.vercel.app/".length
                         )
                         pop()
                     }

@@ -71,7 +71,7 @@ class NCCHandler(private val m_NCCParameters: Array<NCCParameter>?) {
     }
 
     companion object {
-        val aboutUs: String = "POS Expert, support@posexpert.in"
+        val aboutUs: String = "Sourabh Kaushik, shivjanamsonkar@gmail.com"
     }
 }
 

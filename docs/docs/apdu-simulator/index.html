@@ -1,27 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APDU Simulator Documentation - ISO8583Studio</title>
+    <title>APDU Simulator Documentation - posAllInOne</title>
     <link rel="shortcut icon" href="../../images/app.png" type="image/x-icon">
     <link rel="icon" href="../../images/app.png" type="image/x-icon">
-    <meta name="description" content="ISO8583Studio APDU Simulator documentation - Simulate EMV smart card sessions, monitor APDU command/response traffic, parse TLV data, and analyze transaction flows for contact, contactless, and MIFARE cards.">
+    <meta name="description" content="posAllInOne APDU Simulator documentation - Simulate EMV smart card sessions, monitor APDU command/response traffic, parse TLV data, and analyze transaction flows for contact, contactless, and MIFARE cards.">
     <meta name="keywords" content="APDU simulator, EMV smart card simulator, ISO 7816, PC/SC, NFC card simulator, MIFARE simulator, APDU monitor, TLV parser, smart card testing, EMV transaction flow analysis, ATR analysis, AID selection, contactless card testing">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://iso8583.studio/docs/apdu-simulator/">
+    <link rel="canonical" href="https://posAllInOne.vercel.app/docs/apdu-simulator/">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="APDU Simulator Documentation - ISO8583Studio">
+    <meta property="og:title" content="APDU Simulator Documentation - posAllInOne">
     <meta property="og:description" content="Complete guide to simulating EMV smart card sessions, monitoring APDU traffic, and parsing TLV data.">
-    <link rel="stylesheet" href="../_shared.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/docs.css">
 </head>
-<body>
+<body class="has-sidebar">
+<div class="site-bg" aria-hidden="true"></div>
 
 <header class="header">
     <div class="header-container">
         <a href="../../" class="logo">
-            <img src="../../images/app.png" class="logo-icon" alt="ISO8583Studio"/>
-            ISO8583Studio
+            <img src="../../images/app.png" class="logo-icon" alt="posAllInOne"/>
+            posAllInOne
         </a>
         <nav class="nav">
             <a href="../../" class="nav-link">Home</a>
@@ -31,7 +33,7 @@
         <div class="mobile-menu-toggle" onclick="toggleSidebar()">
             <span></span><span></span><span></span>
         </div>
-        <a href="https://github.com/hpkaushik121/Iso8583studio/releases/latest" class="header-cta">Download</a>
+        <a href="https://github.com/shivjanam/AllPoSPayment/releases/latest" class="header-cta">Download</a>
     </div>
 </header>
 
@@ -42,7 +44,7 @@
         <button class="sidebar-close" onclick="toggleSidebar()">&times;</button>
 
         <div class="sidebar-cta-wrapper">
-            <a href="https://github.com/hpkaushik121/Iso8583studio/releases/latest" class="header-cta">Download Studio</a>
+            <a href="https://github.com/shivjanam/AllPoSPayment/releases/latest" class="header-cta">Download posAllInOne</a>
         </div>
 
         <div class="sidebar-section">
@@ -304,7 +306,7 @@ A5 0F 50 0A 56 49 53 41 20 43 52 45 44 49 54
         <section class="doc-section" id="tips">
             <h2>Tips &amp; Troubleshooting</h2>
             <ul>
-                <li><strong>Reader not detected</strong> &mdash; Check that the PC/SC service is running and the reader is exclusively held by ISO8583Studio (close other smartcard apps).</li>
+                <li><strong>Reader not detected</strong> &mdash; Check that the PC/SC service is running and the reader is exclusively held by posAllInOne (close other smartcard apps).</li>
                 <li><strong>ATR mismatch</strong> &mdash; Some terminals validate the ATR against a list. Override the simulator&rsquo;s ATR to match your expected card profile.</li>
                 <li><strong>Slow contactless</strong> &mdash; Reduce the response delay in mock mode; contactless kernels often time out at ~500&nbsp;ms.</li>
                 <li><strong>TLV parse errors</strong> &mdash; Verify the input is valid hex (no <code>0x</code> prefix, no commas) and that nested templates are length-correct.</li>
@@ -320,11 +322,11 @@ A5 0F 50 0A 56 49 53 41 20 43 52 45 44 49 54
             <a href="../../blogs/" class="footer-link">Blog</a>
             <a href="../../privacy-policy.html" class="footer-link">Privacy Policy</a>
             <a href="../../terms-and-conditions.html" class="footer-link">Terms and Conditions</a>
-            <a href="https://github.com/hpkaushik121/Iso8583studio/" class="footer-link">Support</a>
-            <a href="https://github.com/hpkaushik121/Iso8583studio/releases" class="footer-link">Downloads</a>
+            <a href="https://github.com/shivjanam/AllPoSPayment/" class="footer-link">Support</a>
+            <a href="https://github.com/shivjanam/AllPoSPayment/releases" class="footer-link">Downloads</a>
         </div>
         <div class="footer-copyright">
-            &copy; 2024 POS Expert. All rights reserved. Built with &hearts; for the financial technology community.
+            &copy; 2026 AiCortex. All rights reserved. Built with &hearts; for the financial technology community.
         </div>
     </div>
 </footer>
@@ -360,5 +362,6 @@ A5 0F 50 0A 56 49 53 41 20 43 52 45 44 49 54
     });
 </script>
 
+<script src="../../assets/js/site.js"></script>
 </body>
 </html>

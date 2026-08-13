@@ -145,7 +145,7 @@ compose.desktop {
                 iconFile.set(project.file("resources/linus/app.png"))
                 // Additional Linux settings
                 shortcut = true
-                debMaintainer = "support@iso8583.studio"
+                debMaintainer = "shivjanamsonkar@gmail.com"
                 menuGroup = "Development"
             }
         }

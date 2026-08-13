@@ -103,7 +103,7 @@ ISO8583Studio is a comprehensive desktop application designed for financial inst
 #### Option 1: GitHub Releases (Recommended)
 ```bash
 # Download latest release
-wget https://github.com/hpkaushik121/Iso8583studio/releases/latest/download/ISO8583Studio.jar
+wget https://github.com/shivjanam/AllPoSPayment/releases/latest/download/ISO8583Studio.jar
 
 # Run the application
 java -jar ISO8583Studio.jar
@@ -112,7 +112,7 @@ java -jar ISO8583Studio.jar
 #### Option 2: Build from Source
 ```bash
 # Clone the repository
-git clone https://github.com/hpkaushik121/Iso8583studio.git
+git clone https://github.com/shivjanam/AllPoSPayment.git
 cd Iso8583studio
 
 # Build the project
@@ -612,7 +612,7 @@ grep "Processing time" iso8583.log
 
 1. **Clone Repository**
 ```bash
-git clone https://github.com/hpkaushik121/Iso8583studio.git
+git clone https://github.com/shivjanam/AllPoSPayment.git
 cd Iso8583studio
 ```
 
@@ -701,10 +701,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **GitHub Issues**: [Report bugs and request features](https://github.com/hpkaushik121/Iso8583studio/issues)
-- **Discussions**: [Community discussions and Q&A](https://github.com/hpkaushik121/Iso8583studio/discussions)
-- **Documentation**: [Wiki pages](https://github.com/hpkaushik121/Iso8583studio/wiki)
-- **Releases**: [Download latest versions](https://github.com/hpkaushik121/Iso8583studio/releases)
+- **GitHub Issues**: [Report bugs and request features](https://github.com/shivjanam/AllPoSPayment/issues)
+- **Discussions**: [Community discussions and Q&A](https://github.com/shivjanam/AllPoSPayment/discussions)
+- **Documentation**: [Wiki pages](https://github.com/shivjanam/AllPoSPayment/wiki)
+- **Releases**: [Download latest versions](https://github.com/shivjanam/AllPoSPayment/releases)
 
 ---
 

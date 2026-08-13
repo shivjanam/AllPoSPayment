@@ -46,7 +46,7 @@ data class Iso8583Data(
         const val MAX_PACKAGE_SIZE = 10024
         const val MAX_BITS = 128
 
-        val aboutUs: String = "POS Expert, support@posexpert.in"
+        val aboutUs: String = "Sourabh Kaushik, shivjanamsonkar@gmail.com"
     }
 
     var lengthInAsc: Boolean

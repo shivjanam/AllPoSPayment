@@ -1,827 +1,31 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/app.png" type="image/x-icon">
     <link rel="icon" href="images/app.png" type="image/x-icon">
-    <meta name="description" content="ISO8583Studio Terms and Conditions - Open source software agreement under Apache License 2.0. Free to use, modify, and distribute. No warranties. Professional fintech desktop application.">
-    <meta name="keywords" content="ISO8583Studio terms and conditions, ISO8583Studio license, Apache License 2.0, open source payment software, fintech software license, ISO 8583 software terms, payment processing software agreement, free payment software, open source fintech">
+    <meta name="description" content="posAllInOne Terms and Conditions - Open source software agreement under Apache License 2.0. Free to use, modify, and distribute. No warranties. Professional fintech desktop application.">
+    <meta name="keywords" content="posAllInOne terms and conditions, posAllInOne license, Apache License 2.0, open source payment software, fintech software license, ISO 8583 software terms, payment processing software agreement, free payment software, open source fintech">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://iso8583.studio/terms-and-conditions.html">
+    <link rel="canonical" href="https://posAllInOne.vercel.app/terms-and-conditions.html">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://iso8583.studio/terms-and-conditions.html">
-    <meta property="og:title" content="Terms and Conditions - ISO8583Studio">
+    <meta property="og:url" content="https://posAllInOne.vercel.app/terms-and-conditions.html">
+    <meta property="og:title" content="Terms and Conditions - posAllInOne">
     <meta property="og:description" content="Open source software terms under Apache License 2.0. Free to use, modify, and distribute for any purpose including commercial.">
-    <meta property="og:image" content="https://iso8583.studio/images/app.png">
-    <title>Terms and Conditions - ISO8583Studio</title>
-    <style>
-        html {
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            /* ISO8583Studio Brand Colors - Dark Theme */
-            --primary-blue: #6ab7ff;
-            --primary-blue-light: #9fd3ff;
-            --primary-blue-dark: #1e88e5;
-            --accent-teal: #64d8cb;
-            --accent-teal-light: #a0f4ea;
-            --accent-teal-dark: #26a69a;
-            --background-light: #252836;
-            --background-dark: #1a1d2e;
-            --card-light: #2F3142;
-            --card-dark: #1e1f2e;
-            --error-red: #ff6b6b;
-            --success-green: #51cf66;
-            --warning-yellow: #ffd43b;
-            --border-light: #3d3d3d;
-            --border-dark: #2a2a2a;
-            --text-primary-light: #eceff1;
-            --text-secondary-light: #b0bec5;
-            --text-muted: #90a4ae;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary-light);
-            background: var(--background-dark);
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
-        }
-
-        /* Transparent Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: transparent;
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .header.scrolled {
-            background: rgba(26, 29, 46, 0.95);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .header-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--text-primary-light);
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: var(--text-secondary-light);
-            font-size: 16px;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav a:hover {
-            color: var(--primary-blue);
-        }
-
-        .header-cta {
-            background: var(--primary-blue);
-            color: var(--background-dark);
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 20px rgba(106, 183, 255, 0.3);
-            white-space: nowrap;
-        }
-
-        .header-cta:hover {
-            background: var(--primary-blue-light);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(106, 183, 255, 0.4);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1001;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-primary-light);
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: rgba(26, 29, 46, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-            padding: 24px;
-            z-index: 999;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            display: block;
-            transform: translateY(0);
-        }
-
-        .mobile-menu a {
-            display: block;
-            color: var(--text-secondary-light);
-            text-decoration: none;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-light);
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--primary-blue);
-            transform: translateX(8px);
-        }
-
-        .mobile-menu .header-cta {
-            display: inline-block;
-            margin-top: 16px;
-            text-align: center;
-            width: 100%;
-            padding: 12px 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 140px 24px 60px;
-            background: var(--background-dark);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(106, 183, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(100, 216, 203, 0.1) 0%, transparent 50%);
-            animation: hero-glow 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes hero-glow {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.7; transform: scale(1.05); }
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: clamp(32px, 6vw, 48px);
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--text-primary-light);
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(16px, 3vw, 20px);
-            font-weight: 400;
-            color: var(--text-secondary-light);
-            margin-bottom: 32px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .last-updated {
-            background: rgba(106, 183, 255, 0.1);
-            border: 1px solid rgba(106, 183, 255, 0.3);
-            border-radius: 20px;
-            padding: 8px 16px;
-            display: inline-block;
-            font-size: clamp(12px, 2vw, 14px);
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin-bottom: 24px;
-        }
-
-        /* Quick Summary Cards */
-        .summary-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(16px, 4vw, 24px);
-            margin: clamp(32px, 6vw, 48px) 0;
-        }
-
-        .summary-card {
-            background: rgba(106, 183, 255, 0.1);
-            border: 1px solid rgba(106, 183, 255, 0.3);
-            border-radius: 16px;
-            padding: clamp(16px, 4vw, 24px);
-            transition: all 0.3s ease;
-        }
-
-        .summary-card:hover {
-            background: rgba(106, 183, 255, 0.15);
-            border-color: rgba(106, 183, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .summary-card.warning {
-            background: rgba(255, 212, 59, 0.1);
-            border-color: rgba(255, 212, 59, 0.3);
-        }
-
-        .summary-card.warning:hover {
-            background: rgba(255, 212, 59, 0.15);
-            border-color: rgba(255, 212, 59, 0.5);
-        }
-
-        .summary-card.success {
-            background: rgba(81, 207, 102, 0.1);
-            border-color: rgba(81, 207, 102, 0.3);
-        }
-
-        .summary-card.success:hover {
-            background: rgba(81, 207, 102, 0.15);
-            border-color: rgba(81, 207, 102, 0.5);
-        }
-
-        .card-icon {
-            font-size: clamp(20px, 4vw, 24px);
-            margin-bottom: 12px;
-        }
-
-        .card-title {
-            font-size: clamp(16px, 3vw, 18px);
-            font-weight: 700;
-            color: var(--text-primary-light);
-            margin-bottom: 8px;
-        }
-
-        .card-description {
-            color: var(--text-secondary-light);
-            font-size: clamp(12px, 2.5vw, 14px);
-            line-height: 1.5;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 clamp(16px, 4vw, 24px) clamp(80px, 15vw, 120px);
-        }
-
-        .content-card {
-            background: linear-gradient(135deg, var(--card-dark) 0%, var(--card-light) 100%);
-            border-radius: clamp(16px, 3vw, 20px);
-            padding: clamp(24px, 8vw, 60px);
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(106, 183, 255, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .content-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(106, 183, 255, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .content-card > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Typography */
-        h2 {
-            font-size: clamp(24px, 5vw, 32px);
-            font-weight: 700;
-            color: var(--text-primary-light);
-            margin: clamp(32px, 6vw, 48px) 0 clamp(16px, 3vw, 24px) 0;
-            line-height: 1.2;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            scroll-margin-top: 100px;
-        }
-
-        h2::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 24px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
-            border-radius: 2px;
-        }
-
-        h3 {
-            font-size: clamp(18px, 4vw, 24px);
-            font-weight: 600;
-            color: var(--text-primary-light);
-            margin: clamp(24px, 5vw, 32px) 0 clamp(12px, 2.5vw, 16px) 0;
-            line-height: 1.3;
-        }
-
-        h4 {
-            font-size: clamp(16px, 3vw, 18px);
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin: clamp(16px, 3vw, 24px) 0 clamp(8px, 2vw, 12px) 0;
-        }
-
-        p {
-            color: var(--text-secondary-light);
-            margin-bottom: 16px;
-            line-height: 1.7;
-            font-size: clamp(14px, 2.5vw, 16px);
-        }
-
-        strong {
-            color: var(--text-primary-light);
-            font-weight: 600;
-        }
-
-        /* Lists */
-        ul, ol {
-            margin: 16px 0;
-            padding-left: 24px;
-        }
-
-        li {
-            color: var(--text-secondary-light);
-            margin-bottom: 8px;
-            line-height: 1.6;
-            font-size: clamp(14px, 2.5vw, 16px);
-        }
-
-        li strong {
-            color: var(--primary-blue);
-        }
-
-        /* Special sections */
-        .highlight-box {
-            background: rgba(100, 216, 203, 0.1);
-            border: 1px solid rgba(100, 216, 203, 0.3);
-            border-radius: 12px;
-            padding: clamp(16px, 4vw, 24px);
-            margin: clamp(16px, 3vw, 24px) 0;
-            position: relative;
-        }
-
-        .highlight-box::before {
-            content: '💡';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--card-dark);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        .warning-box {
-            background: rgba(255, 212, 59, 0.1);
-            border: 1px solid rgba(255, 212, 59, 0.3);
-            border-radius: 12px;
-            padding: clamp(16px, 4vw, 24px);
-            margin: clamp(16px, 3vw, 24px) 0;
-            position: relative;
-        }
-
-        .warning-box::before {
-            content: '⚠️';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--card-dark);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        .info-box {
-            background: rgba(106, 183, 255, 0.1);
-            border: 1px solid rgba(106, 183, 255, 0.3);
-            border-radius: 12px;
-            padding: clamp(16px, 4vw, 24px);
-            margin: clamp(16px, 3vw, 24px) 0;
-            position: relative;
-        }
-
-        .info-box::before {
-            content: 'ℹ️';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--card-dark);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        .error-box {
-            background: rgba(255, 107, 107, 0.1);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 12px;
-            padding: clamp(16px, 4vw, 24px);
-            margin: clamp(16px, 3vw, 24px) 0;
-            position: relative;
-        }
-
-        .error-box::before {
-            content: '🚫';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--card-dark);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        /* Contact section */
-        .contact-section {
-            background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--accent-teal-dark) 100%);
-            border-radius: 16px;
-            padding: clamp(24px, 5vw, 32px);
-            margin-top: clamp(32px, 6vw, 48px);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .contact-title {
-            font-size: clamp(20px, 4vw, 24px);
-            font-weight: 700;
-            color: white;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-text {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 2;
-            font-size: clamp(14px, 2.5vw, 16px);
-        }
-
-        .contact-email {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-            font-size: clamp(14px, 2.5vw, 16px);
-        }
-
-        .contact-email:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Back to top */
-        .back-to-top {
-            position: fixed;
-            bottom: clamp(20px, 4vw, 32px);
-            right: clamp(20px, 4vw, 32px);
-            width: clamp(44px, 8vw, 48px);
-            height: clamp(44px, 8vw, 48px);
-            background: var(--primary-blue);
-            color: var(--background-dark);
-            border: none;
-            border-radius: 50%;
-            font-size: clamp(16px, 3vw, 20px);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(106, 183, 255, 0.4);
-            opacity: 0;
-            transform: translateY(20px);
-            z-index: 1000;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: var(--primary-blue-light);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(106, 183, 255, 0.6);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--card-dark);
-            padding: clamp(32px, 6vw, 40px) clamp(16px, 4vw, 24px);
-            border-top: 1px solid var(--border-light);
-            text-align: center;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: clamp(16px, 4vw, 32px);
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(40px, 8vw, 48px);
-            height: clamp(40px, 8vw, 48px);
-            background: rgba(106, 183, 255, 0.1);
-            border: 1px solid rgba(106, 183, 255, 0.3);
-            border-radius: 12px;
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-size: clamp(16px, 3vw, 20px);
-            transition: all 0.3s ease;
-            transform: translateZ(0);
-        }
-
-        .social-link:hover {
-            background: rgba(106, 183, 255, 0.2);
-            border-color: rgba(106, 183, 255, 0.5);
-            transform: translateY(-2px) translateZ(0);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: clamp(16px, 4vw, 32px);
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--text-secondary-light);
-            text-decoration: none;
-            font-size: clamp(12px, 2.5vw, 14px);
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: var(--primary-blue);
-        }
-
-        .footer-copyright {
-            color: var(--text-secondary-light);
-            font-size: clamp(11px, 2vw, 14px);
-            border-top: 1px solid var(--border-light);
-            padding-top: 20px;
-            line-height: 1.5;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .nav {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .header-cta {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 0 16px;
-            }
-
-            h2::before {
-                display: none;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .contact-section {
-                text-align: left;
-            }
-
-            .contact-section div {
-                margin-bottom: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                height: 60px;
-            }
-
-            .header-container {
-                padding: 0 12px;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .logo-icon {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-
-            .mobile-menu {
-                top: 60px;
-                padding: 16px;
-            }
-
-            .mobile-menu a {
-                padding: 12px 0;
-            }
-
-            .mobile-menu .header-cta {
-                padding: 10px 16px;
-                margin-top: 12px;
-            }
-
-            .hero {
-                padding: 100px 12px 40px;
-            }
-        }
-
-        /* Accessibility and Performance */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus styles for accessibility */
-        .header-cta:focus,
-        .footer-link:focus,
-        .nav a:focus,
-        .mobile-menu a:focus,
-        .contact-email:focus {
-            outline: 2px solid var(--primary-blue);
-            outline-offset: 2px;
-        }
-
-        .mobile-menu-toggle:focus {
-            outline: 2px solid var(--primary-blue);
-            outline-offset: 4px;
-        }
-
-        /* Smooth animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <title>Terms and Conditions - posAllInOne</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/design-system.css">
 </head>
 <body>
+<div class="site-bg" aria-hidden="true"></div>
 <!-- Transparent Header -->
 <header class="header">
     <div class="header-container">
         <a href="./" class="logo">
-            <img src="images/app.png" class="logo-icon" alt="ISO8583Studio"/>
-            ISO8583Studio
+            <img src="images/app.png" class="logo-icon" alt="posAllInOne"/>
+            posAllInOne
         </a>
         <nav class="nav">
             <a href="#agreement">Agreement</a>
@@ -848,13 +52,13 @@
 </header>
 
 <!-- Hero Section -->
-<section class="hero">
+<section class="hero hero-compact">
     <div class="hero-container">
         <div class="last-updated">
-            📅 Last Updated: June 9, 2025
+            Last Updated: June 9, 2025
         </div>
         <h1 class="hero-title">Terms and Conditions</h1>
-        <p class="hero-subtitle">Professional software license agreement for ISO8583Studio desktop application. These terms govern the use of our financial transaction processing software.</p>
+        <p class="hero-subtitle">Professional software license agreement for posAllInOne desktop application. These terms govern the use of our financial transaction processing software.</p>
 
         <!-- Quick Summary Cards -->
         <div class="summary-cards">
@@ -883,10 +87,10 @@
 <div class="main-content">
     <div class="content-card fade-in">
         <h2 id="agreement">📋 Open Source Software Agreement</h2>
-        <p>This Open Source Software Agreement ("Agreement") governs your use of ISO8583Studio desktop application software ("Software"), which is free and open source software provided by POS Expertt Solutions Pvt. Ltd. ("we," "us," or "our") under the Apache License 2.0.</p>
+        <p>This Open Source Software Agreement ("Agreement") governs your use of posAllInOne desktop application software ("Software"), which is free and open source software provided by AiCortext Solutions Pvt. Ltd. ("we," "us," or "our") under the Apache License 2.0.</p>
 
         <div class="highlight-box">
-            <p><strong>By downloading, installing, or using ISO8583Studio, you acknowledge that this is open source software provided "AS IS" without any warranty or obligation from the developers, distributed under the Apache License 2.0.</strong></p>
+            <p><strong>By downloading, installing, or using posAllInOne, you acknowledge that this is open source software provided "AS IS" without any warranty or obligation from the developers, distributed under the Apache License 2.0.</strong></p>
         </div>
 
         <div class="warning-box">
@@ -896,7 +100,7 @@
         <h2 id="license">🔑 Apache License 2.0 Grant</h2>
 
         <h3>Open Source License</h3>
-        <p>ISO8583Studio is distributed under the Apache License 2.0, which grants you the following rights:</p>
+        <p>posAllInOne is distributed under the Apache License 2.0, which grants you the following rights:</p>
 
         <ul>
             <li><strong>Use:</strong> Use the Software for any purpose, including commercial purposes</li>
@@ -933,7 +137,7 @@
 
         <h2 id="usage">✅ Permitted Usage</h2>
 
-        <p>As open source software under the Apache 2.0 License, you may use ISO8583Studio for any purpose, including:</p>
+        <p>As open source software under the Apache 2.0 License, you may use posAllInOne for any purpose, including:</p>
 
         <h3>Financial Transaction Processing</h3>
         <ul>
@@ -959,7 +163,7 @@
             <li><strong>Commercial Operations:</strong> Use in production environments for profit-generating activities</li>
             <li><strong>Redistribution:</strong> Distribute original or modified versions (with proper attribution and notices)</li>
             <li><strong>Incorporation:</strong> Incorporate into other software products or services</li>
-            <li><strong>Selling:</strong> Sell software that includes or is based on ISO8583Studio</li>
+            <li><strong>Selling:</strong> Sell software that includes or is based on posAllInOne</li>
             <li><strong>Sublicensing:</strong> Grant sublicenses to third parties under the same terms</li>
         </ul>
 
@@ -974,7 +178,7 @@
             <p><strong>UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING, LICENSOR PROVIDES THE WORK (AND EACH CONTRIBUTOR PROVIDES ITS CONTRIBUTIONS) ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE.</strong></p>
         </div>
 
-        <p>As open source software distributed under the Apache License 2.0, ISO8583Studio comes with absolutely no warranties:</p>
+        <p>As open source software distributed under the Apache License 2.0, posAllInOne comes with absolutely no warranties:</p>
 
         <ul>
             <li><strong>No Warranty of Functionality:</strong> No guarantee that the software will work for your specific needs</li>
@@ -1004,7 +208,7 @@
             <p><strong>IN NO EVENT AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING NEGLIGENCE), CONTRACT, OR OTHERWISE, UNLESS REQUIRED BY APPLICABLE LAW (SUCH AS DELIBERATE AND GROSSLY NEGLIGENT ACTS) OR AGREED TO IN WRITING, SHALL ANY CONTRIBUTOR BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER ARISING AS A RESULT OF THIS LICENSE OR OUT OF THE USE OR INABILITY TO USE THE WORK.</strong></p>
         </div>
 
-        <p>The developers and contributors of ISO8583Studio have no liability whatsoever for:</p>
+        <p>The developers and contributors of posAllInOne have no liability whatsoever for:</p>
 
         <ul>
             <li><strong>Financial Losses:</strong> Any financial losses, lost profits, or business damages</li>
@@ -1056,25 +260,25 @@
         <div class="contact-section" id="contact">
             <h2 class="contact-title">💬 Community and Support</h2>
             <p class="contact-text">
-                ISO8583Studio is open source software. Support comes from the community, and contributions are welcome from everyone.
+                posAllInOne is open source software. Support comes from the community, and contributions are welcome from everyone.
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 24px 0; text-align: left;">
                 <div>
                     <h4 style="color: white; margin-bottom: 8px;">💬 Community Support</h4>
-                    <a href="https://github.com/hpkaushik121/Iso8583studio/discussions" class="contact-email" style="display: block; margin-bottom: 12px;">GitHub Discussions</a>
+                    <a href="https://github.com/shivjanam/AllPoSPayment/discussions" class="contact-email" style="display: block; margin-bottom: 12px;">GitHub Discussions</a>
                     <p style="font-size: 14px; color: rgba(255, 255, 255, 0.8);">Community questions and discussions</p>
                 </div>
 
                 <div>
                     <h4 style="color: white; margin-bottom: 8px;">🐛 Bug Reports</h4>
-                    <a href="https://github.com/hpkaushik121/Iso8583studio/issues" class="contact-email" style="display: block; margin-bottom: 12px;">GitHub Issues</a>
+                    <a href="https://github.com/shivjanam/AllPoSPayment/issues" class="contact-email" style="display: block; margin-bottom: 12px;">GitHub Issues</a>
                     <p style="font-size: 14px; color: rgba(255, 255, 255, 0.8);">Report bugs and request features</p>
                 </div>
 
                 <div>
                     <h4 style="color: white; margin-bottom: 8px;">📚 Documentation</h4>
-                    <a href="https://github.com/hpkaushik121/Iso8583studio/wiki" class="contact-email" style="display: block; margin-bottom: 12px;">Project Wiki</a>
+                    <a href="https://github.com/shivjanam/AllPoSPayment/wiki" class="contact-email" style="display: block; margin-bottom: 12px;">Project Wiki</a>
                     <p style="font-size: 14px; color: rgba(255, 255, 255, 0.8);">Documentation and guides</p>
                 </div>
             </div>
@@ -1083,14 +287,14 @@
                 <h4 style="color: white; margin-bottom: 12px;">📧 Optional Professional Services</h4>
                 <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px; line-height: 1.6;">
                     For paid consulting, custom development, or enterprise support:<br>
-                    <a href="mailto:sk@iso8583.studio" style="color: var(--primary-blue); text-decoration: none;">sk@iso8583.studio</a>
+                    <a href="mailto:shivjanamsonkar@gmail.com" style="color: var(--primary-blue); text-decoration: none;">shivjanamsonkar@gmail.com</a>
                 </p>
             </div>
 
             <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 20px; margin-top: 20px;">
                 <h4 style="color: white; margin-bottom: 12px;">⭐ Open Source Repository</h4>
                 <p style="color: rgba(255, 255, 255, 0.9); font-size: 14px; line-height: 1.6;">
-                    Source Code: <a href="https://github.com/hpkaushik121/Iso8583studio" style="color: var(--primary-blue); text-decoration: none;">https://github.com/hpkaushik121/Iso8583studio</a><br>
+                    Source Code: <a href="https://github.com/shivjanam/AllPoSPayment" style="color: var(--primary-blue); text-decoration: none;">https://github.com/shivjanam/AllPoSPayment</a><br>
                     License: Apache 2.0 License<br>
                     Contributions: Welcome from the community
                 </p>
@@ -1109,7 +313,7 @@
             </p>
             <p style="color: var(--text-secondary-light); font-size: 14px;">
                 This open source software is distributed under the Apache License 2.0. Read the complete license text in the
-                <a href="https://github.com/hpkaushik121/Iso8583studio/blob/main/LICENSE" style="color: var(--primary-blue); text-decoration: none;">repository LICENSE file</a>.
+                <a href="https://github.com/shivjanam/AllPoSPayment/blob/main/LICENSE" style="color: var(--primary-blue); text-decoration: none;">repository LICENSE file</a>.
             </p>
 
             <div style="margin-top: 24px; padding: 20px; background: rgba(106, 183, 255, 0.1); border: 1px solid rgba(106, 183, 255, 0.3); border-radius: 12px;">
@@ -1134,16 +338,13 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-social">
-            <a href="https://github.com/users/hpkaushik121/projects/1" class="social-link" title="Roadmap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/in/POS Expert-kaushik/" class="social-link" title="LinkedIn">
+<a href="https://www.linkedin.com/in/shiv-janam-sonkar-48983824/" class="social-link" title="LinkedIn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
-            <a href="https://github.com/hpkaushik121" class="social-link" title="GitHub">
+            <a href="https://github.com/shivjanam" class="social-link" title="GitHub">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             </a>
-            <a href="https://medium.com/@iso8583.studio" class="social-link" title="Medium">
+            <a href="https://medium.com/@shivjanamsonkar" class="social-link" title="Medium">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
             </a>
         </div>
@@ -1152,201 +353,16 @@
             <a href="./docs/" class="footer-link">Documentation</a>
             <a href="./privacy-policy.html" class="footer-link">Privacy Policy</a>
             <a href="./terms-and-conditions.html" class="footer-link">Terms and Conditions</a>
-            <a href="https://github.com/hpkaushik121/Iso8583studio/" class="footer-link">Support</a>
-            <a href="https://github.com/hpkaushik121/Iso8583studio/releases" class="footer-link">Downloads</a>
+            <a href="https://github.com/shivjanam/AllPoSPayment/" class="footer-link">Support</a>
+            <a href="https://github.com/shivjanam/AllPoSPayment/releases" class="footer-link">Downloads</a>
         </div>
 
         <div class="footer-copyright">
-            &copy; 2024 POS Expert. All rights reserved. Built with &hearts; for the financial technology community.
+            &copy; 2026 AiCortex. All rights reserved. Built with &hearts; for the financial technology community.
         </div>
     </div>
 </footer>
 
-<script>
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const toggle = document.querySelector('.mobile-menu-toggle');
-
-        mobileMenu.classList.toggle('active');
-        toggle.classList.toggle('active');
-    }
-
-    // Enhanced scroll effects and animations
-    document.addEventListener('DOMContentLoaded', () => {
-        // Transparent header scroll effect
-        const header = document.querySelector('.header');
-        const backToTop = document.querySelector('.back-to-top');
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY > 50;
-
-            // Header transparency
-            header.classList.toggle('scrolled', scrolled);
-
-            // Back to top button
-            backToTop.classList.toggle('visible', window.scrollY > 300);
-        }, { passive: true });
-
-        // Close mobile menu when clicking outside or on links
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const toggle = document.querySelector('.mobile-menu-toggle');
-
-            if (!toggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                toggle.classList.remove('active');
-            }
-        });
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const toggle = document.querySelector('.mobile-menu-toggle');
-
-                mobileMenu.classList.remove('active');
-                toggle.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    const headerHeight = 80;
-                    const targetPosition = targetElement.offsetTop - headerHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    // Update URL without scrolling
-                    history.pushState(null, null, targetId);
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe content sections
-        document.querySelectorAll('.fade-in, h2, h3, .summary-cards').forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'all 0.6s ease-out';
-            observer.observe(element);
-        });
-
-        // Enhanced summary card animations
-        document.querySelectorAll('.summary-card').forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
-            card.style.animation = 'fadeInUp 0.6s ease-out forwards';
-        });
-
-        // Enhanced hover effects for interactive elements
-        document.querySelectorAll('.summary-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-4px)';
-                card.style.boxShadow = '0 8px 32px rgba(106, 183, 255, 0.3)';
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(-2px)';
-                card.style.boxShadow = '';
-            });
-        });
-
-        // Copy link functionality for headers
-        document.querySelectorAll('h2[id], h3[id]').forEach(header => {
-            header.style.cursor = 'pointer';
-            header.title = 'Click to copy link';
-
-            header.addEventListener('click', () => {
-                const url = `${window.location.origin}${window.location.pathname}#${header.id}`;
-                navigator.clipboard.writeText(url).then(() => {
-                    // Visual feedback
-                    const originalColor = header.style.color;
-                    header.style.color = 'var(--success-green)';
-                    setTimeout(() => {
-                        header.style.color = originalColor;
-                    }, 1000);
-                });
-            });
-        });
-
-        // Keyboard navigation support
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const toggle = document.querySelector('.mobile-menu-toggle');
-
-                if (mobileMenu.classList.contains('active')) {
-                    mobileMenu.classList.remove('active');
-                    toggle.classList.remove('active');
-                }
-            }
-        });
-
-        // Fix for horizontal overflow issues
-        function preventHorizontalOverflow() {
-            const elements = document.querySelectorAll('*');
-            elements.forEach(element => {
-                const computedStyle = window.getComputedStyle(element);
-                if (computedStyle.overflowX === 'visible' && element.scrollWidth > element.clientWidth) {
-                    element.style.overflowX = 'hidden';
-                }
-            });
-        }
-
-        // Run overflow fix on load and resize
-        preventHorizontalOverflow();
-        window.addEventListener('resize', preventHorizontalOverflow);
-    });
-
-    // Back to top functionality
-    function scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    // Additional horizontal scroll prevention
-    window.addEventListener('load', () => {
-        document.documentElement.style.overflowX = 'hidden';
-        document.body.style.overflowX = 'hidden';
-
-        // Ensure no elements cause horizontal scroll
-        const allElements = document.querySelectorAll('*');
-        allElements.forEach(element => {
-            const style = window.getComputedStyle(element);
-            if (style.position === 'fixed' || style.position === 'absolute') {
-                const rect = element.getBoundingClientRect();
-                if (rect.right > window.innerWidth) {
-                    element.style.maxWidth = '100vw';
-                    element.style.boxSizing = 'border-box';
-                }
-            }
-        });
-    });
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
