@@ -1,17 +1,31 @@
-# ISO8583Studio Documentation
+# posAllInOne
 
-![ISO8583Studio](https://img.shields.io/badge/ISO8583-Studio-blue?style=for-the-badge)
+![posAllInOne](https://img.shields.io/badge/posAllInOne-Desktop-blue?style=for-the-badge)
 ![Kotlin](https://img.shields.io/badge/Kotlin-Multiplatform-7F52FF?style=for-the-badge&logo=kotlin)
 ![Compose](https://img.shields.io/badge/Compose-Desktop-4285F4?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Apache-green?style=for-the-badge)
 
-A professional desktop application for ISO8583 financial transaction processing, configuration, testing, and monitoring. Built with Kotlin Multiplatform and Compose Desktop for cross-platform compatibility.
+**The Payment Engineering Toolkit.** posAllInOne is a free, open-source desktop toolkit for analyzing, building and testing ISO 8583, EMV, HSM and POS payment transactions. It is built with Kotlin Multiplatform and Compose Desktop for Windows, macOS, and Linux.
+
+**Website:** [posallinone.vercel.app](https://posallinone.vercel.app/) · **Documentation:** [Payment engineering guides](https://posallinone.vercel.app/documentation/) · **Releases:** [Download the latest build](https://github.com/shivjanam/AllPoSPayment/releases/latest) · **Build from source:** [BUILD.md](BUILD.md)
+
+![posAllInOne desktop application](docs/images/img.png)
+
+## Payment engineering capabilities
+
+- **ISO 8583:** message templates, host simulation, parsing, bitmaps, response-code testing and live transaction monitoring.
+- **EMV & APDU:** TLV and EMV tag analysis, APDU simulation, cryptogram workflows, and smart-card test support.
+- **HSM & cryptography:** HSM simulation, DUKPT utilities, TR-31 key blocks, PIN block tooling, MACs, DES/3DES/AES and key-management helpers.
+- **POS and gateway testing:** configurable host/gateway connectivity, transaction rules, load tests, and protocol/message-format support.
+
+See the technical landing pages for [ISO 8583](https://posallinone.vercel.app/iso8583/), [EMV](https://posallinone.vercel.app/emv/), [HSM and payment cryptography](https://posallinone.vercel.app/hsm/), and [POS testing](https://posallinone.vercel.app/pos-testing/).
 
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
 - [Features](#-features)
 - [Installation](#-installation)
+- [Build from source](BUILD.md)
 - [Quick Start](#-quick-start)
 - [Configuration](#-configuration)
 - [User Interface](#-user-interface)
@@ -23,7 +37,7 @@ A professional desktop application for ISO8583 financial transaction processing,
 
 ## 🎯 Overview
 
-ISO8583Studio is a comprehensive desktop application designed for financial institutions, payment processors, and developers working with ISO8583 messaging standards. It provides an intuitive interface for configuring gateways, testing transactions, and monitoring real-time activity.
+**posAllInOne** is a comprehensive desktop application for financial institutions, payment processors, and developers working with ISO 8583 messaging. It provides an intuitive interface for configuring gateways, testing transactions, and monitoring real-time activity.
 
 ### Key Benefits
 - **Professional Grade**: Enterprise-ready solution for production environments
@@ -94,40 +108,46 @@ ISO8583Studio is a comprehensive desktop application designed for financial inst
 
 ### System Requirements
 - **Operating Systems**: Windows 10+, macOS 10.14+, Linux (Ubuntu 18.04+)
-- **Java Runtime**: JDK 11 or higher
-- **Memory**: Minimum 512MB RAM (2GB recommended)
-- **Disk Space**: 100MB free space
+- **Java Runtime**: JDK **17** or higher (Temurin/OpenJDK recommended)
+- **Memory**: Minimum 2GB RAM (4GB recommended for building from source)
+- **Disk Space**: ~500MB free for dependencies + packaging (more for native installers)
 
 ### Download Options
 
 #### Option 1: GitHub Releases (Recommended)
-```bash
-# Download latest release
-wget https://github.com/shivjanam/AllPoSPayment/releases/latest/download/ISO8583Studio.jar
+Download the latest Windows EXE / installer or JAR from:
 
-# Run the application
-java -jar ISO8583Studio.jar
+https://github.com/shivjanam/AllPoSPayment/releases/latest
+
+```bash
+# Example if you have an uber JAR
+java -jar ISO8583Studio-windows-x64-1.0.14.jar
 ```
 
-#### Option 2: Build from Source
+#### Option 2: Build from Source (local desktop app)
+Full step-by-step guide: **[BUILD.md](BUILD.md)**
+
 ```bash
-# Clone the repository
 git clone https://github.com/shivjanam/AllPoSPayment.git
-cd Iso8583studio
+cd AllPoSPayment
 
-# Build the project
-./gradlew build
+# Run the desktop UI (dev)
+./gradlew :composeApp:run          # macOS / Linux
+gradlew.bat :composeApp:run        # Windows
 
-# Run the application
-./gradlew run
+# Package (Windows helpers)
+build-jar.bat                      # uber JAR
+build-exe.bat                      # Windows EXE installer
 ```
+
+Website / docs preview (static, separate from the app): see `docs/serve-local.bat` or [BUILD.md](BUILD.md#9-docs-site-separate-from-the-desktop-app).
 
 ## 🏁 Quick Start
 
 ### 1. First Launch
-1. Download and run ISO8583Studio
-2. The application will open with a default configuration
-3. Navigate through the tabbed interface to explore features
+1. Run from source (`gradlew.bat :composeApp:run`) or open a built EXE/JAR
+2. The application opens with the main tool workspace
+3. Explore Host Simulator, HSM tools, and payment utilities from the navigation
 
 ### 2. Basic Gateway Setup
 ```kotlin
