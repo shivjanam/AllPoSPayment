@@ -10,17 +10,17 @@
     <meta name="keywords" content="APDU, EMV, smart card, ISO7816, payment testing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/apdu-simulator-smart-card-commands.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/apdu-simulator-smart-card-commands.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/apdu-simulator-smart-card-commands.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/apdu-simulator-smart-card-commands.html">
     <meta property="og:title" content="APDU Simulator: Smart Card Commands for EMV Testing">
     <meta property="og:description" content="Understand APDU structure and core EMV commands—SELECT, READ RECORD, GET PROCESSING OPTIONS—and test them with posAllInOne.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="APDU Simulator: Smart Card Commands for EMV Testing">
     <meta name="twitter:description" content="Understand APDU structure and core EMV commands—SELECT, READ RECORD, GET PROCESSING OPTIONS—and test them with posAllInOne.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-06-05",
-  "url": "https://posAllInOne.vercel.app/blogs/apdu-simulator-smart-card-commands.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/apdu-simulator-smart-card-commands.html",
+  "url": "https://posallinone.vercel.app/blogs/apdu-simulator-smart-card-commands.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/apdu-simulator-smart-card-commands.html",
   "keywords": "APDU, EMV, smart card, ISO7816, payment testing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Application Protocol Data Units (APDUs) are the language of chip cards. Whether you are certifying a terminal kernel, debugging an acquirer host integration, or teaching newcomers how EMV data is actually retrieved, you need crisp command construction, predictable response parsing, and repeatable traces. An <strong>APDU Simulator</strong> bridges the gap between specification text and real silicon—letting you send structured commands and inspect SW1/SW2 statuses without writing a one-off script for every lab scenario.</p>
-<p><strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop tool for Windows, macOS, and Linux with 70+ payment utilities, including an <strong>APDU Simulator</strong> alongside Host Simulator, HSM Simulator (PayShield 10K), EMV tools (tag parser, cryptogram, SDA/DDA, ATR), cryptography, key management, and payment primitives (CVV, PIN block, DUKPT, MAC, and more).</p>
+<p><strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop tool for Windows, macOS, and Linux with 70+ payment utilities, including an <strong>APDU Simulator</strong> alongside Host Simulator, HSM Simulator (PayShield 10K), EMV tools (tag parser, cryptogram, SDA/DDA, ATR), cryptography, key management, and payment primitives (CVV, PIN block, DUKPT, MAC, and more).</p>
 <h2 id="apdu-anatomy-the-parts-you-will-actually-edit">APDU anatomy (the parts you will actually edit)</h2>
 <p>Most command APDUs follow either a short or extended layout depending on data length. At a minimum, you will manipulate:</p>
 <div class="table-wrapper"><table><thead><tr><th>Field</th><th>Typical meaning</th></tr></thead><tbody><tr><td>CLA</td><td>Class (channel, secure messaging indicators)</td></tr><tr><td>INS</td><td>Instruction (the operation)</td></tr><tr><td>P1/P2</td><td>Parameters (file offsets, record numbers, etc.)</td></tr><tr><td>Lc</td><td>Length of command data (if present)</td></tr><tr><td>Data</td><td>Command payload</td></tr><tr><td>Le</td><td>Expected response length (if present)</td></tr></tbody></table></div>
@@ -156,7 +156,7 @@
 <li><strong>TLV drift</strong> — Always parse nested tags after READ RECORD; do not assume fixed offsets.</li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
-<p>Mastering APDUs is mastering EMV data collection. SELECT frames the application, GPO defines the processing roadmap, and READ RECORD pulls the payloads your kernel and host will consume. <strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a> to combine APDU simulation with EMV parsing, cryptography, and payment testing utilities in a single free, cross-platform desktop toolkit.</p>
+<p>Mastering APDUs is mastering EMV data collection. SELECT frames the application, GPO defines the processing roadmap, and READ RECORD pulls the payloads your kernel and host will consume. <strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a> to combine APDU simulation with EMV parsing, cryptography, and payment testing utilities in a single free, cross-platform desktop toolkit.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

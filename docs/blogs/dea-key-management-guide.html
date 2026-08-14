@@ -10,17 +10,17 @@
     <meta name="keywords" content="DEA, key hierarchy, ZMK, ZPK, key exchange">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/dea-key-management-guide.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/dea-key-management-guide.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/dea-key-management-guide.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/dea-key-management-guide.html">
     <meta property="og:title" content="DEA Key Management: Hierarchies, ZMK, ZPK, ZAK, ZEK, and Exchange Protocols">
     <meta property="og:description" content="Understand DEA-style key hierarchies and roles of ZMK, ZPK, ZAK, and ZEK—plus exchange patterns for payment hosts and HSM testing.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DEA Key Management: Hierarchies, ZMK, ZPK, ZAK, ZEK, and Exchange Protocols">
     <meta name="twitter:description" content="Understand DEA-style key hierarchies and roles of ZMK, ZPK, ZAK, and ZEK—plus exchange patterns for payment hosts and HSM testing.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-07-12",
-  "url": "https://posAllInOne.vercel.app/blogs/dea-key-management-guide.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/dea-key-management-guide.html",
+  "url": "https://posallinone.vercel.app/blogs/dea-key-management-guide.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/dea-key-management-guide.html",
   "keywords": "DEA, key hierarchy, ZMK, ZPK, key exchange"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p><strong>Data Encryption Algorithm (DEA)</strong> is the umbrella term for DES and Triple DES in many payment standards. When documents discuss <strong>DEA keys</strong>, they usually mean: “symmetric keys used in legacy and transitional payment crypto,” with explicit roles—encrypting PINs, generating MACs, wrapping other keys—rather than one undifferentiated blob labeled “secret.”</p>
-<p>Understanding <strong>DEA key management</strong> is understanding how acquirer hosts, networks, and HSMs coordinate <strong>hierarchies</strong> (which key wraps which), <strong>names</strong> (ZMK/ZPK/ZAK/ZEK and friends), and <strong>exchange protocols</strong> (how material moves between parties without ever appearing in clear text in the wrong place). <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app for Windows, macOS, and Linux with 70+ tools, including DEA key helpers alongside Thales, Futurex, Atalla, and SafeNet calculators, TR-31, keyshare, cryptography, Host Simulator, and HSM Simulator (PayShield 10K).</p>
+<p>Understanding <strong>DEA key management</strong> is understanding how acquirer hosts, networks, and HSMs coordinate <strong>hierarchies</strong> (which key wraps which), <strong>names</strong> (ZMK/ZPK/ZAK/ZEK and friends), and <strong>exchange protocols</strong> (how material moves between parties without ever appearing in clear text in the wrong place). <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app for Windows, macOS, and Linux with 70+ tools, including DEA key helpers alongside Thales, Futurex, Atalla, and SafeNet calculators, TR-31, keyshare, cryptography, Host Simulator, and HSM Simulator (PayShield 10K).</p>
 <h2 id="hierarchies-masters-exchanges-and-working-keys">Hierarchies: masters, exchanges, and working keys</h2>
 <p>Most payment architectures layer keys:</p>
 <ol>
@@ -146,7 +146,7 @@
 <h2 id="network-specific-overlays-always-read-the-implementation-guide">Network-specific overlays: always read the implementation guide</h2>
 <p>Global concepts (ZMK, ZPK) become precise only inside a <strong>network implementation guide</strong>: allowed PIN block types, MAC algorithms, field formats, and error codes. Two acquirers can both say “ZPK exchange” yet differ on truncation, key check methods, or required HSM commands. Build your test suite from the guide’s examples first, then extend with edge cases—never the reverse.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>DEA key management is the scaffolding that makes PIN and MAC security possible at scale: named roles, wrapped exchange, and HSM-enforced policy. <strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>—a free desktop toolkit with DEA key helpers, multi-vendor calculators, TR-31, keyshare, and 70+ payment utilities for serious host and terminal testing.</p>
+<p>DEA key management is the scaffolding that makes PIN and MAC security possible at scale: named roles, wrapped exchange, and HSM-enforced policy. <strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>—a free desktop toolkit with DEA key helpers, multi-vendor calculators, TR-31, keyshare, and 70+ payment utilities for serious host and terminal testing.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

@@ -22,6 +22,8 @@ async function discoverRoutes(directory = docsRoot, relativePath = '') {
 }
 
 const routes = (await discoverRoutes()).sort((a, b) => a.localeCompare(b));
-const today = new Date().toISOString().slice(0, 10);
-const urls = routes.map((route) => `  <url>\n    <loc>${baseUrl}${route}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${route === '/' ? '1.0' : '0.8'}</priority>\n  </url>`).join('\n');
+// Omit optional lastmod values rather than publishing a build timestamp for every
+// page. Search engines should only receive a lastmod when it is the page's actual
+// content-modification date.
+const urls = routes.map((route) => `  <url>\n    <loc>${baseUrl}${route}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${route === '/' ? '1.0' : '0.8'}</priority>\n  </url>`).join('\n');
 await writeFile(new URL('../sitemap.xml', import.meta.url), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);

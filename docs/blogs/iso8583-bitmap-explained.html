@@ -10,17 +10,17 @@
     <meta name="keywords" content="bitmap, ISO 8583, data elements, parsing, DE1">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/iso8583-bitmap-explained.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/iso8583-bitmap-explained.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/iso8583-bitmap-explained.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/iso8583-bitmap-explained.html">
     <meta property="og:title" content="ISO 8583 Bitmaps Explained: Primary, Secondary, and How to Read the Flags">
     <meta property="og:description" content="Learn how ISO 8583 bitmaps declare field presence, how primary vs secondary maps work, and how to verify bits with a bitmap calculator.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ISO 8583 Bitmaps Explained: Primary, Secondary, and How to Read the Flags">
     <meta name="twitter:description" content="Learn how ISO 8583 bitmaps declare field presence, how primary vs secondary maps work, and how to verify bits with a bitmap calculator.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-02-25",
-  "url": "https://posAllInOne.vercel.app/blogs/iso8583-bitmap-explained.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/iso8583-bitmap-explained.html",
+  "url": "https://posallinone.vercel.app/blogs/iso8583-bitmap-explained.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/iso8583-bitmap-explained.html",
   "keywords": "bitmap, ISO 8583, data elements, parsing, DE1"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>The <strong>bitmap</strong> is the unsung hero of <strong>ISO 8583</strong>. It is also the first place integrators stumble: a single misread bit does not just misinterpret <strong>Field 7</strong>—it shifts the entire remainder of the message, producing plausible-looking garbage. If you want confidence in your traces, you need a crisp mental model of what a bitmap is, how <strong>primary</strong> and <strong>secondary</strong> bitmaps relate, and how to validate your understanding with tools rather than intuition.</p>
-<p>This article explains <strong>ISO 8583 bitmaps</strong> in a practical, developer-first way, and points to <strong>posAllInOne</strong>—a <strong>free cross-platform desktop application</strong> for payment testing—as a place to rehearse bitmap reasoning with calculators and parsers (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>).</p>
+<p>This article explains <strong>ISO 8583 bitmaps</strong> in a practical, developer-first way, and points to <strong>posAllInOne</strong>—a <strong>free cross-platform desktop application</strong> for payment testing—as a place to rehearse bitmap reasoning with calculators and parsers (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>).</p>
 <h2 id="what-problem-bitmaps-solve">What problem bitmaps solve</h2>
 <p>ISO 8583 messages can include many optional <strong>data elements</strong> (fields). Transmitting a full fixed layout every time would waste bandwidth. Instead, the message includes a compact <strong>presence map</strong>: a sequence of bits indicating which fields are included.</p>
 <p>In other words: <strong>bitmap → which fields exist → parse those fields in order</strong>.</p>

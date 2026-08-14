@@ -10,17 +10,17 @@
     <meta name="keywords" content="Field 39, response code, declines, ISO 8583, troubleshooting">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/iso8583-response-codes-reference.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/iso8583-response-codes-reference.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/iso8583-response-codes-reference.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/iso8583-response-codes-reference.html">
     <meta property="og:title" content="ISO 8583 Response Codes (Field 39): Common Values, Meaning, and Decline Triage">
     <meta property="og:description" content="A practical guide to ISO 8583 Field 39 response codes—what they mean, how to triage declines, and how to avoid mistaking format errors for issuer decisions.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ISO 8583 Response Codes (Field 39): Common Values, Meaning, and Decline Triage">
     <meta name="twitter:description" content="A practical guide to ISO 8583 Field 39 response codes—what they mean, how to triage declines, and how to avoid mistaking format errors for issuer decisions.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-03-15",
-  "url": "https://posAllInOne.vercel.app/blogs/iso8583-response-codes-reference.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/iso8583-response-codes-reference.html",
+  "url": "https://posallinone.vercel.app/blogs/iso8583-response-codes-reference.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/iso8583-response-codes-reference.html",
   "keywords": "Field 39, response code, declines, ISO 8583, troubleshooting"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>When a card transaction fails, someone always asks: <strong>“What did the issuer say?”</strong> In many ISO 8583 implementations, the first-pass answer is <strong>Field 39</strong>, the <strong>response code</strong>. It looks simple—two characters—but it sits at the intersection of issuer policy, fraud rules, stand-in processing, merchant category restrictions, and plain old <strong>message formatting mistakes</strong>.</p>
-<p>This article provides a <strong>practical</strong> Field 39 mindset: how to interpret common patterns, how to triage declines without jumping to conclusions, and how to separate <strong>host decisions</strong> from <strong>integration errors</strong>. For hands-on inspection of ISO 8583 artifacts, consider <strong>posAllInOne</strong>, a <strong>free cross-platform desktop application</strong> for payment developers (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>).</p>
+<p>This article provides a <strong>practical</strong> Field 39 mindset: how to interpret common patterns, how to triage declines without jumping to conclusions, and how to separate <strong>host decisions</strong> from <strong>integration errors</strong>. For hands-on inspection of ISO 8583 artifacts, consider <strong>posAllInOne</strong>, a <strong>free cross-platform desktop application</strong> for payment developers (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>).</p>
 <h2 id="what-field-39-represents">What Field 39 represents</h2>
 <p>Field 39 communicates the <strong>authorization outcome</strong> (or a processing outcome for non-financial messages, depending on context). It is not a universal global enum with identical meaning in every country and network—<strong>your implementation guide</strong> defines valid values, synonyms, and special stand-in behaviors.</p>
 <h2 id="the-two-character-format-not-always-obvious">The two-character format: not always “obvious”</h2>

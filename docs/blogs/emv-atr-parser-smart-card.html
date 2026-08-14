@@ -10,17 +10,17 @@
     <meta name="keywords" content="ATR, smart card, EMV, ISO7816, payment testing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/emv-atr-parser-smart-card.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/emv-atr-parser-smart-card.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/emv-atr-parser-smart-card.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/emv-atr-parser-smart-card.html">
     <meta property="og:title" content="EMV ATR Parser: Reading Answer-to-Reset on Smart Cards">
     <meta property="og:description" content="Decode smart card ATR bytes: TS, T0, T1, historical bytes, and protocol info for EMV and payment testing with posAllInOne.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="EMV ATR Parser: Reading Answer-to-Reset on Smart Cards">
     <meta name="twitter:description" content="Decode smart card ATR bytes: TS, T0, T1, historical bytes, and protocol info for EMV and payment testing with posAllInOne.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-06-01",
-  "url": "https://posAllInOne.vercel.app/blogs/emv-atr-parser-smart-card.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/emv-atr-parser-smart-card.html",
+  "url": "https://posallinone.vercel.app/blogs/emv-atr-parser-smart-card.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/emv-atr-parser-smart-card.html",
   "keywords": "ATR, smart card, EMV, ISO7816, payment testing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>The Answer-to-Reset (ATR) is the first message you receive from a contact smart card after reset. It tells the reader which physical and logical protocols the card supports, how timing should be interpreted, and often carries <strong>historical bytes</strong> that manufacturers use for identification. For payment engineers, the ATR is not “the transaction”—but misreading it can cause wrong baud classes, wrong protocol selection (T=0 vs T=1), or wasted hours chasing communication issues that are really negotiation failures.</p>
-<p><strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop application for Windows, macOS, and Linux with 70+ tools for payment testing—including EMV utilities such as ATR parsing alongside Host Simulator, HSM Simulator (PayShield 10K), APDU Simulator, and cryptography suites. This article explains the ATR layout you will see in the field and how to interpret it methodically.</p>
+<p><strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop application for Windows, macOS, and Linux with 70+ tools for payment testing—including EMV utilities such as ATR parsing alongside Host Simulator, HSM Simulator (PayShield 10K), APDU Simulator, and cryptography suites. This article explains the ATR layout you will see in the field and how to interpret it methodically.</p>
 <h2 id="why-the-atr-matters-in-payment-projects">Why the ATR matters in payment projects</h2>
 <p>EMV transactions ultimately ride on ISO 7816-style command/response pairs (APDUs). Before you issue <code>SELECT</code> or <code>GET PROCESSING OPTIONS</code>, the reader must:</p>
 <ol>
@@ -160,7 +160,7 @@
 <h2 id="using-iso8583studio-alongside-atr-analysis">Using posAllInOne alongside ATR analysis</h2>
 <p><strong>posAllInOne</strong> integrates EMV-oriented utilities (tag parser, cryptogram helpers, SDA/DDA, ATR) with broader payment testing tools: Host Simulator, HSM Simulator (PayShield 10K), APDU Simulator, converters (Base64, BCD, Luhn), and key-management calculators (Thales, Futurex, Atalla, SafeNet, TR-31, keyshare, DEA keys). That means you can move from <strong>ATR → protocol choice → APDU traces → crypto checks</strong> without switching contexts.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>The ATR is a compact specification of how your reader and card will cooperate at the wire level. Parsing it reliably prevents a whole class of false positives in EMV debugging. <strong>Get posAllInOne</strong> at <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>—free, offline-friendly, and built for payment testers who need both EMV depth and a broad cryptography and key-management toolbox in one desktop app.</p>
+<p>The ATR is a compact specification of how your reader and card will cooperate at the wire level. Parsing it reliably prevents a whole class of false positives in EMV debugging. <strong>Get posAllInOne</strong> at <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>—free, offline-friendly, and built for payment testers who need both EMV depth and a broad cryptography and key-management toolbox in one desktop app.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

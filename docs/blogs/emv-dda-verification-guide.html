@@ -10,17 +10,17 @@
     <meta name="keywords" content="EMV, DDA, smart card, payment testing, cryptography">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/emv-dda-verification-guide.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/emv-dda-verification-guide.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/emv-dda-verification-guide.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/emv-dda-verification-guide.html">
     <meta property="og:title" content="EMV DDA Verification: A Practical Guide to Dynamic Data Authentication">
     <meta property="og:description" content="Learn how EMV Dynamic Data Authentication works, how ICC dynamic signatures are built, and how to verify DDA with posAllInOne.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="EMV DDA Verification: A Practical Guide to Dynamic Data Authentication">
     <meta name="twitter:description" content="Learn how EMV Dynamic Data Authentication works, how ICC dynamic signatures are built, and how to verify DDA with posAllInOne.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-05-28",
-  "url": "https://posAllInOne.vercel.app/blogs/emv-dda-verification-guide.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/emv-dda-verification-guide.html",
+  "url": "https://posallinone.vercel.app/blogs/emv-dda-verification-guide.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/emv-dda-verification-guide.html",
   "keywords": "EMV, DDA, smart card, payment testing, cryptography"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Dynamic Data Authentication (DDA) is one of the cornerstones of chip-card security in EMV. Unlike static authentication, DDA proves that the card’s integrated circuit can produce a fresh cryptographic signature over transaction-specific data—so a skimmed copy of static data cannot pass a terminal that enforces DDA. For testers and engineers building acquirer hosts, certification labs, or internal regression suites, understanding DDA end-to-end is essential.</p>
-<p>This guide walks through what DDA protects, how the ICC dynamic signature is formed, and how you can verify each step using a focused desktop workflow. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including EMV utilities that help you parse tags, inspect cryptograms, and reason about authentication flows without juggling half a dozen separate utilities.</p>
+<p>This guide walks through what DDA protects, how the ICC dynamic signature is formed, and how you can verify each step using a focused desktop workflow. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including EMV utilities that help you parse tags, inspect cryptograms, and reason about authentication flows without juggling half a dozen separate utilities.</p>
 <h2 id="what-dda-solves-in-emv">What DDA solves in EMV</h2>
 <p>Static Data Authentication (SDA) validates that issuer data on the card was signed by the payment network’s certificate authority. It does not bind the authentication to the <em>current</em> transaction. DDA closes that gap: the card uses a private key stored on the chip to sign data that includes unpredictable elements from the terminal (and often from the transaction), producing an <strong>ICC dynamic signature</strong>. The terminal verifies this signature with the card’s public key (delivered in the issuer’s PKI hierarchy on the card).</p>
 <p>If DDA verification fails, the terminal may decline offline, request online authorization, or follow the risk rules in your kernel configuration—depending on card brand and region.</p>
@@ -147,7 +147,7 @@
 <li><strong>Mixing kernels</strong> — Contact EMV Book 3 flows differ from contactless kernel rules; always verify against the specification your terminal implements.</li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
-<p>DDA verification is deterministic once the signed message is reconstructed faithfully. Invest in precise TLV logging, canonical ordering, and repeatable crypto checks—then automate them. <strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a> and fold EMV parsing plus crypto verification into one desktop toolkit for faster, more reliable payment testing.</p>
+<p>DDA verification is deterministic once the signed message is reconstructed faithfully. Invest in precise TLV logging, canonical ordering, and repeatable crypto checks—then automate them. <strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a> and fold EMV parsing plus crypto verification into one desktop toolkit for faster, more reliable payment testing.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

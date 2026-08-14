@@ -2,535 +2,446 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://posallinone.vercel.app/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/apdu/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blog/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/aes-encryption-decryption-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/apdu-simulator-smart-card-commands.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/cross-platform-payment-testing-tool.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/cvv-generation-validation.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/dea-key-management-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/des-3des-encryption-testing.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/dukpt-key-derivation-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/emv-atr-parser-smart-card.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/emv-cryptogram-validation.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/emv-dda-verification-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/emv-sda-verification-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/emv-tag-parser-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/fintech-developer-essential-toolkit.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/format-preserving-encryption-fpe.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/futurex-hsm-key-calculator.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/getting-started-installation-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/hash-functions-md5-sha-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/hmac-cmac-calculation.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/host-simulator-rest-api-testing.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/host-simulator-setup-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/host-simulator-tcp-connections.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/host-simulator-transaction-rules.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/host-simulator-unsolicited-messages.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/hsm-simulator-introduction.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/hsm-simulator-key-management.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/hsm-simulator-payshield-commands.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/hsm-simulator-pin-operations.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-bitmap-explained.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-field-types-and-formats.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-message-parser-tutorial.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-message-type-indicators.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-processing-codes-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-response-codes-reference.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-studio-feature-overview.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/iso8583-studio-vs-manual-testing.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/keyshare-generator-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/mac-calculation-iso9797.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/mastercard-cvc3-calculation.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/payment-integration-testing-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/pci-compliance-testing-tools.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/pin-block-calculator-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/pin-block-formats-iso9564.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/pin-offset-ibm3624-method.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/pin-verification-value-pvv.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/rsa-key-generation-testing.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/testing-without-hardware-hsm.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/thales-hsm-key-calculator.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/tr31-key-block-guide.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/troubleshooting-iso8583-transactions.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/understanding-iso8583-message-format.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/what-is-iso8583-studio.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/blogs/why-payment-developers-need-iso8583-studio.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/cloud-simulators/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/apdu-simulator/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/card-validation/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/cipher-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/dukpt-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/emv-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/host-simulator/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/hsm-simulator/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/key-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/mac-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/pin-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/docs/utility-tools/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/documentation/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/emv-certification/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/emv/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/emv/tag-reference/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/emv/tlv-parser/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/hsm/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/hsm/dukpt/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/hsm/tr31/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/iso8583/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/iso8583/bitmap/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/iso8583/parser/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/iso8583/response-codes/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/iso8583/simulator/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/kernel/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/middleware/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/payment-gateway/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/pin-block/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/pos-testing/</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/privacy-policy.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://posallinone.vercel.app/terms-and-conditions.html</loc>
-    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

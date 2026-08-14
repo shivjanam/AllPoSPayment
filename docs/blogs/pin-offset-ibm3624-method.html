@@ -10,17 +10,17 @@
     <meta name="keywords" content="IBM 3624, PIN offset, PIN verification, banking, payment security">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/pin-offset-ibm3624-method.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/pin-offset-ibm3624-method.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/pin-offset-ibm3624-method.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/pin-offset-ibm3624-method.html">
     <meta property="og:title" content="IBM 3624 PIN Offset Explained: Natural PIN, Decimalization, and Verification">
     <meta property="og:description" content="Learn IBM 3624 PIN offset: natural PIN, decimalization table, offset calculation, and how testers validate PIN transformation end-to-end.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="IBM 3624 PIN Offset Explained: Natural PIN, Decimalization, and Verification">
     <meta name="twitter:description" content="Learn IBM 3624 PIN offset: natural PIN, decimalization table, offset calculation, and how testers validate PIN transformation end-to-end.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-07-22",
-  "url": "https://posAllInOne.vercel.app/blogs/pin-offset-ibm3624-method.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/pin-offset-ibm3624-method.html",
+  "url": "https://posallinone.vercel.app/blogs/pin-offset-ibm3624-method.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/pin-offset-ibm3624-method.html",
   "keywords": "IBM 3624, PIN offset, PIN verification, banking, payment security"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Mainframe-era PIN systems still power a surprising share of issuer processing. When engineers first encounter <strong>IBM 3624 PIN offset</strong> rules, the documentation can feel like cryptography written in banking folklore: “decimalization table,” “natural PIN,” and an offset that somehow reconciles customer-chosen PINs with a cryptographic PIN <strong>PVV</strong>-adjacent world—except it is not PVV.</p>
-<p>If you are testing issuer-side PIN change, ATM PIN set, or host verification flows, you need a crisp mental model of what 3624 <em>computes</em>, what data must remain consistent across systems, and where implementations silently diverge. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including utilities aligned with classic PIN workflows—so you can validate calculations and compare outputs against your host reference implementation.</p>
+<p>If you are testing issuer-side PIN change, ATM PIN set, or host verification flows, you need a crisp mental model of what 3624 <em>computes</em>, what data must remain consistent across systems, and where implementations silently diverge. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including utilities aligned with classic PIN workflows—so you can validate calculations and compare outputs against your host reference implementation.</p>
 <h2 id="the-goal-of-ibm-3624-style-pin-offset">The goal of IBM 3624-style PIN offset</h2>
 <p>At a high level, IBM 3624 defines a deterministic way to derive a <strong>PIN</strong> from secret material (commonly involving a <strong>PIN generation key</strong> and PAN-related inputs in real deployments) and then represent differences using an <strong>offset</strong> stored on the cardholder record.</p>
 <p>In testing, you rarely re-derive the entire historical banking stack; instead you validate that:</p>
@@ -142,7 +142,7 @@
 <p>When you are iterating quickly, you want a desktop toolkit that covers not only classic PIN topics but adjacent cryptography needed in the same sprint: key management concepts, MAC verification, message debugging. <strong>posAllInOne</strong> is built for that “many tools, one workstation” workflow.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>IBM 3624 PIN offset is manageable when you treat it like any other cryptographic configuration: explicit tables, explicit digit traces, and explicit versioning. Build vectors, compare outputs, and only then chase network timeouts.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and turn PIN offset ambiguities into repeatable calculations you can log, diff, and defend in certification reviews.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and turn PIN offset ambiguities into repeatable calculations you can log, diff, and defend in certification reviews.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

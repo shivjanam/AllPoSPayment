@@ -10,17 +10,17 @@
     <meta name="keywords" content="CVV, CVC, card security, DES, payment testing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/cvv-generation-validation.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/cvv-generation-validation.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/cvv-generation-validation.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/cvv-generation-validation.html">
     <meta property="og:title" content="CVV and CVC: Generation, Validation, and the CVV1/CVV2/iCVV Family">
     <meta property="og:description" content="Learn how CVV/CVC codes are generated with DES-based schemes, how CVV1/CVV2/iCVV differ, and how to test validation without leaking secrets.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CVV and CVC: Generation, Validation, and the CVV1/CVV2/iCVV Family">
     <meta name="twitter:description" content="Learn how CVV/CVC codes are generated with DES-based schemes, how CVV1/CVV2/iCVV differ, and how to test validation without leaking secrets.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-08-08",
-  "url": "https://posAllInOne.vercel.app/blogs/cvv-generation-validation.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/cvv-generation-validation.html",
+  "url": "https://posallinone.vercel.app/blogs/cvv-generation-validation.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/cvv-generation-validation.html",
   "keywords": "CVV, CVC, card security, DES, payment testing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>E-commerce teams call it <strong>CVV2</strong>. Issuers say <strong>CVC2</strong>. Chip people mutter about <strong>iCVV</strong>. Meanwhile your gateway log simply says <strong>CVV mismatch</strong>—and now you are supposed to infer whether the problem is user typo, tokenization, key synchronization, or a BIN mapping that sends traffic down the wrong cryptography profile.</p>
-<p>Card verification values are small digits with an outsized impact on fraud and authorization behavior. Understanding <strong>how</strong> they are generated and <strong>what</strong> each variant binds to helps you build tests that isolate formatting mistakes from cryptographic mistakes. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including CVV workflows—to support lab validation with controlled keys and known vectors.</p>
+<p>Card verification values are small digits with an outsized impact on fraud and authorization behavior. Understanding <strong>how</strong> they are generated and <strong>what</strong> each variant binds to helps you build tests that isolate formatting mistakes from cryptographic mistakes. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including CVV workflows—to support lab validation with controlled keys and known vectors.</p>
 <h2 id="what-cvv-cvc-protects">What CVV/CVC protects</h2>
 <p>A CVV-like value is designed so that possession of magnetic stripe or embossed data alone is insufficient for some attack models—depending on channel—because the verification value is derived using secret keys and specific card data.</p>
 <p>This article stays at the integration-testing layer: fields, variants, and validation discipline—not key material handling procedures for production systems.</p>
@@ -139,7 +139,7 @@ Expected:
 <p><strong>posAllInOne</strong> bundles CVV tooling alongside PIN blocks, MAC/HMAC/CMAC utilities, and broader payment testing workflows—so you can confirm cryptographic outputs and then immediately validate how those values appear inside message structures and simulators.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>CVV/CVC looks simple because it is three digits. Underneath, it is a precise DES-based function of PAN fragments, dates, and service codes—plus the right keys. Test with frozen inputs, separate channel variants, and vendor vectors.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and make CVV validation a repeatable lab procedure—not a production guessing game.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and make CVV validation a repeatable lab procedure—not a production guessing game.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

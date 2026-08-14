@@ -10,17 +10,17 @@
     <meta name="keywords" content="RSA, public key, PEM, DER, payment testing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/rsa-key-generation-testing.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/rsa-key-generation-testing.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/rsa-key-generation-testing.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/rsa-key-generation-testing.html">
     <meta property="og:title" content="RSA Key Generation and Testing: Sizes, Formats, and Sign/Verify Flows">
     <meta property="og:description" content="Generate and test RSA key pairs: key sizes, DER vs PEM, and signing workflows for payment and HSM integration with posAllInOne.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RSA Key Generation and Testing: Sizes, Formats, and Sign/Verify Flows">
     <meta name="twitter:description" content="Generate and test RSA key pairs: key sizes, DER vs PEM, and signing workflows for payment and HSM integration with posAllInOne.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-06-18",
-  "url": "https://posAllInOne.vercel.app/blogs/rsa-key-generation-testing.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/rsa-key-generation-testing.html",
+  "url": "https://posallinone.vercel.app/blogs/rsa-key-generation-testing.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/rsa-key-generation-testing.html",
   "keywords": "RSA, public key, PEM, DER, payment testing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>RSA remains central to payment security—TLS handshakes, certificate chains, legacy PIN encryption schemes in some environments, and EMV’s public-key authentication story all lean on RSA’s asymmetric model: a <strong>private key</strong> signs or decrypts; a <strong>public key</strong> verifies or encrypts. For testers, the challenge is rarely “what RSA is,” but <strong>whether two systems agree on the same bytes</strong>: modulus endianness, encoding (DER vs PEM), padding (PKCS#1 v1.5 vs PSS), and hash algorithms.</p>
-<p><strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop application (Windows, macOS, Linux) with 70+ payment tools, including RSA and ECDSA support alongside AES, DES/3DES, hash, FPE, Host Simulator, HSM Simulator (PayShield 10K), EMV tools, and key-management utilities.</p>
+<p><strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop application (Windows, macOS, Linux) with 70+ payment tools, including RSA and ECDSA support alongside AES, DES/3DES, hash, FPE, Host Simulator, HSM Simulator (PayShield 10K), EMV tools, and key-management utilities.</p>
 <h2 id="rsa-key-sizes-you-will-actually-see">RSA key sizes you will actually see</h2>
 <p>Common RSA modulus sizes in enterprise and payment contexts:</p>
 <div class="table-wrapper"><table><thead><tr><th>Size (bits)</th><th>Notes</th></tr></thead><tbody><tr><td>2048</td><td>Widely deployed baseline for many systems</td></tr><tr><td>3072</td><td>Longer-term transition choice in some policies</td></tr><tr><td>4096</td><td>Heavier; used where policy mandates</td></tr></tbody></table></div>
@@ -143,7 +143,7 @@ MII...
 <h2 id="using-iso8583studio-for-rsa-workflows">Using posAllInOne for RSA workflows</h2>
 <p><strong>posAllInOne</strong> places RSA/ECDSA next to symmetric crypto, hashing, and payment primitives (CVV, PIN block, MAC, DUKPT) and simulators (Host, PayShield 10K). That layout supports realistic chains: <strong>hash → sign → verify</strong> alongside message formatting checks you already perform for ISO 8583 or proprietary frames.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>RSA testing rewards pedantry: key size, DER/PEM choice, padding, and hash must be fixed like protocol fields. <strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>—a free desktop toolkit for RSA and broader cryptography needs—so your lab can validate asymmetric workflows with the same rigor you apply to host messages and EMV data.</p>
+<p>RSA testing rewards pedantry: key size, DER/PEM choice, padding, and hash must be fixed like protocol fields. <strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>—a free desktop toolkit for RSA and broader cryptography needs—so your lab can validate asymmetric workflows with the same rigor you apply to host messages and EMV data.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

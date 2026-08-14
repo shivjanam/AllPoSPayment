@@ -10,17 +10,17 @@
     <meta name="keywords" content="Mastercard, CVC3, contactless, ATC, UN">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/mastercard-cvc3-calculation.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/mastercard-cvc3-calculation.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/mastercard-cvc3-calculation.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/mastercard-cvc3-calculation.html">
     <meta property="og:title" content="Mastercard CVC3 for Contactless: Dynamic Codes, UN, and ATC Explained">
     <meta property="og:description" content="Understand Mastercard CVC3 for contactless: dynamic cryptograms, UN, ATC, and what to log when contactless CVM tests fail in the lab.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mastercard CVC3 for Contactless: Dynamic Codes, UN, and ATC Explained">
     <meta name="twitter:description" content="Understand Mastercard CVC3 for contactless: dynamic cryptograms, UN, ATC, and what to log when contactless CVM tests fail in the lab.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-08-12",
-  "url": "https://posAllInOne.vercel.app/blogs/mastercard-cvc3-calculation.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/mastercard-cvc3-calculation.html",
+  "url": "https://posallinone.vercel.app/blogs/mastercard-cvc3-calculation.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/mastercard-cvc3-calculation.html",
   "keywords": "Mastercard, CVC3, contactless, ATC, UN"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Contactless tap looks instant to the cardholder, but under the hood it is a choreography of counters, unpredictable numbers, and cryptographic checks. When something goes wrong, logs rarely say “your cryptogram is aesthetically displeasing.” They say <strong>CVC3 failed</strong>—and now you are reconciling <strong>dynamic CVC3</strong>, <strong>UN</strong>, <strong>ATC</strong>, and a kernel configuration that seemed fine yesterday on Visa but not on Mastercard.</p>
-<p>This article explains <strong>Mastercard CVC3</strong> at a practitioner level: what makes it “dynamic,” which data elements typically participate, and how to structure lab tests so failures are diagnosable. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including EMV-oriented and cryptography utilities—to help you analyze tag data and validate cryptographic workflows during integration testing.</p>
+<p>This article explains <strong>Mastercard CVC3</strong> at a practitioner level: what makes it “dynamic,” which data elements typically participate, and how to structure lab tests so failures are diagnosable. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including EMV-oriented and cryptography utilities—to help you analyze tag data and validate cryptographic workflows during integration testing.</p>
 <h2 id="why-cvc3-exists">Why CVC3 exists</h2>
 <p>Static card verification fields help certain channels, but contactless protocols often rely on <strong>dynamic</strong> values to reduce replay-style attack surfaces within the constraints of fast tap transactions. <strong>CVC3</strong> (in Mastercard’s family of concepts) refers to dynamic verification constructions associated with contactless/Mastercard security discussions—exact naming and field placement evolve with program requirements, so bind to your <strong>kernel and card profile</strong> documentation.</p>
 <p><strong>Integration truth:</strong> “CVC3” is not a single button in an app; it is a contract between card personalization, terminal kernel behavior, and issuer cryptography.</p>
@@ -138,7 +138,7 @@ Tap #2 (repeat same amount):
 <p><strong>posAllInOne</strong> is designed for payment testers who need EMV tag inspection, cryptography validation, and message-level tooling in one place—alongside simulators such as host and HSM-oriented workflows (including PayShield 10K style lab needs). When CVC3-related debugging spans bytes and business rules, switching tools less often means shipping sooner.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Mastercard CVC3 contactless checks punish vague logging. Capture UN and ATC, treat dynamic values as single-use evidence per tap, and validate against the profile your card was personalized for.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and make contactless cryptography debugging a traceable process—not a sequence of hopeful retaps.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and make contactless cryptography debugging a traceable process—not a sequence of hopeful retaps.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

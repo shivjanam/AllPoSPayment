@@ -10,17 +10,17 @@
     <meta name="keywords" content="hash, SHA-256, SHA-512, MD5, integrity">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/hash-functions-md5-sha-guide.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/hash-functions-md5-sha-guide.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/hash-functions-md5-sha-guide.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/hash-functions-md5-sha-guide.html">
     <meta property="og:title" content="Hash Functions for Payment Testing: MD5, SHA-1, SHA-256, and SHA-512">
     <meta property="og:description" content="Compare MD5, SHA-1, SHA-256, and SHA-512 for integrity checks and legacy systems—and what to use in new payment designs.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hash Functions for Payment Testing: MD5, SHA-1, SHA-256, and SHA-512">
     <meta name="twitter:description" content="Compare MD5, SHA-1, SHA-256, and SHA-512 for integrity checks and legacy systems—and what to use in new payment designs.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-06-25",
-  "url": "https://posAllInOne.vercel.app/blogs/hash-functions-md5-sha-guide.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/hash-functions-md5-sha-guide.html",
+  "url": "https://posallinone.vercel.app/blogs/hash-functions-md5-sha-guide.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/hash-functions-md5-sha-guide.html",
   "keywords": "hash, SHA-256, SHA-512, MD5, integrity"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Cryptographic hash functions map arbitrary-length input to a fixed-length <strong>digest</strong>. In payment engineering, hashes show up everywhere: HMAC inputs, certificate fingerprints, integrity checks on files, MDCs in legacy schemes, and components of digital signatures. The hard part is not computing a digest—it is choosing a function that matches your <strong>threat model</strong> and your <strong>ecosystem’s contractual reality</strong> (some backends still speak older algorithms).</p>
-<p><strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop application for Windows, macOS, and Linux with 70+ tools, including hash functions alongside AES, DES/3DES, RSA, ECDSA, FPE, Host Simulator, HSM Simulator (PayShield 10K), EMV utilities, and payment primitives.</p>
+<p><strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop application for Windows, macOS, and Linux with 70+ tools, including hash functions alongside AES, DES/3DES, RSA, ECDSA, FPE, Host Simulator, HSM Simulator (PayShield 10K), EMV utilities, and payment primitives.</p>
 <h2 id="what-a-hash-gives-you-and-what-it-does-not">What a hash gives you (and what it does not)</h2>
 <p>A cryptographic hash provides:</p>
 <ul>
@@ -135,7 +135,7 @@
 <h2 id="collision-resistance-why-sha-256-beats-md5-for-new-work">Collision resistance: why SHA-256 beats MD5 for new work</h2>
 <p>Collision attacks target the property that two different inputs should not yield the same digest. MD5 and SHA-1 fail modern collision expectations for adversarial attackers; SHA-256 remains suitable for generic integrity hashing today. When your protocol only needs a checksum against accidental corruption, even CRCs might suffice—but the moment adversaries matter, use a modern hash and pair it with secrets (HMAC) or signatures where appropriate.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>Pick the hash your standard mandates; avoid MD5/SHA-1 for new cryptographic purposes; treat hashes as one layer in a larger security design. <strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>—free, offline-friendly tooling for hashes and the wider payment testing toolchain your team uses daily.</p>
+<p>Pick the hash your standard mandates; avoid MD5/SHA-1 for new cryptographic purposes; treat hashes as one layer in a larger security design. <strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>—free, offline-friendly tooling for hashes and the wider payment testing toolchain your team uses daily.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

@@ -10,17 +10,17 @@
     <meta name="keywords" content="ISO 8583, field format, LLVAR, BCD, parsing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/iso8583-field-types-and-formats.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/iso8583-field-types-and-formats.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/iso8583-field-types-and-formats.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/iso8583-field-types-and-formats.html">
     <meta property="og:title" content="ISO 8583 Field Types and Formats: AN, N, B, Fixed vs LLVAR, and Parsing Discipline">
     <meta property="og:description" content="Master ISO 8583 data element types—alphanumeric, numeric, binary—and length conventions like LLVAR/LLLVAR so your parsers stay aligned with specs.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ISO 8583 Field Types and Formats: AN, N, B, Fixed vs LLVAR, and Parsing Discipline">
     <meta name="twitter:description" content="Master ISO 8583 data element types—alphanumeric, numeric, binary—and length conventions like LLVAR/LLLVAR so your parsers stay aligned with specs.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-03-05",
-  "url": "https://posAllInOne.vercel.app/blogs/iso8583-field-types-and-formats.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/iso8583-field-types-and-formats.html",
+  "url": "https://posallinone.vercel.app/blogs/iso8583-field-types-and-formats.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/iso8583-field-types-and-formats.html",
   "keywords": "ISO 8583, field format, LLVAR, BCD, parsing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>ISO 8583 integrations rarely fail because people cannot read English in a PDF. They fail because <strong>field formats</strong> are easy to misread under pressure: a <strong>numeric</strong> field is not always “ASCII digits,” a <strong>binary</strong> field is not always printable, and a <strong>variable-length</strong> field is not “optional” just because it looks short. If you want stable parsers, you need a disciplined mental model of <strong>field types</strong>, <strong>length indicators</strong>, and the difference between <strong>presentation</strong> in logs versus <strong>bytes on the wire</strong>.</p>
-<p>This article breaks down common ISO 8583 <strong>field type</strong> labels (such as <strong>AN</strong>, <strong>ANS</strong>, <strong>N</strong>, <strong>B</strong>), explains <strong>fixed</strong> vs <strong>variable</strong> formats, and clarifies <strong>LLVAR</strong> / <strong>LLLVAR</strong> conventions at a practical level—then connects that discipline to <strong>posAllInOne</strong>, a <strong>free desktop toolkit</strong> for payment developers on <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>).</p>
+<p>This article breaks down common ISO 8583 <strong>field type</strong> labels (such as <strong>AN</strong>, <strong>ANS</strong>, <strong>N</strong>, <strong>B</strong>), explains <strong>fixed</strong> vs <strong>variable</strong> formats, and clarifies <strong>LLVAR</strong> / <strong>LLLVAR</strong> conventions at a practical level—then connects that discipline to <strong>posAllInOne</strong>, a <strong>free desktop toolkit</strong> for payment developers on <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>).</p>
 <h2 id="why-field-typing-exists">Why field typing exists</h2>
 <p>Payment messages move between systems built in different eras: mainframes, open systems, embedded terminals, cloud gateways. Field typing is a contract that reduces ambiguity:</p>
 <ul>

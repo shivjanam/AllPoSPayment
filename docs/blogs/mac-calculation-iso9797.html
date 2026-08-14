@@ -10,17 +10,17 @@
     <meta name="keywords" content="MAC, ISO 9797, ANSI X9.9, retail MAC, payment security">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/mac-calculation-iso9797.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/mac-calculation-iso9797.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/mac-calculation-iso9797.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/mac-calculation-iso9797.html">
     <meta property="og:title" content="MAC Calculation for Payments: ISO 9797-1, ANSI X9.9/X9.19, and Retail MAC">
     <meta property="og:description" content="Payment MAC algorithms explained: ISO 9797-1 modes, ANSI X9.9 vs X9.19, Algorithm 1/3, and retail MAC pitfalls for integrators and testers.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MAC Calculation for Payments: ISO 9797-1, ANSI X9.9/X9.19, and Retail MAC">
     <meta name="twitter:description" content="Payment MAC algorithms explained: ISO 9797-1 modes, ANSI X9.9 vs X9.19, Algorithm 1/3, and retail MAC pitfalls for integrators and testers.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-08-01",
-  "url": "https://posAllInOne.vercel.app/blogs/mac-calculation-iso9797.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/mac-calculation-iso9797.html",
+  "url": "https://posallinone.vercel.app/blogs/mac-calculation-iso9797.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/mac-calculation-iso9797.html",
   "keywords": "MAC, ISO 9797, ANSI X9.9, retail MAC, payment security"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>You fixed the bitmap, the MTI matches, the stanza fields look perfect—yet the host responds <strong>MAC invalid</strong>. In payment integration, few errors feel as insulting: the message is “right,” except for the one part cryptographically binding integrity.</p>
-<p>Message Authentication Codes (<strong>MACs</strong>) in acquiring and switching contexts are often rooted in <strong>ISO 9797-1</strong> MAC mechanisms and the retail banking conventions commonly referenced as <strong>ANSI X9.9</strong> (single-length key) and <strong>ANSI X9.19</strong> (double-length key procedures). This article clarifies how these names relate, what “Algorithm 1” and “Algorithm 3” usually mean in practice, and how to test MACs without treating cryptography like guesswork. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including MAC utilities—to help you compute and verify codes against your specifications.</p>
+<p>Message Authentication Codes (<strong>MACs</strong>) in acquiring and switching contexts are often rooted in <strong>ISO 9797-1</strong> MAC mechanisms and the retail banking conventions commonly referenced as <strong>ANSI X9.9</strong> (single-length key) and <strong>ANSI X9.19</strong> (double-length key procedures). This article clarifies how these names relate, what “Algorithm 1” and “Algorithm 3” usually mean in practice, and how to test MACs without treating cryptography like guesswork. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including MAC utilities—to help you compute and verify codes against your specifications.</p>
 <h2 id="what-a-payment-mac-is-doing">What a payment MAC is doing</h2>
 <p>A MAC proves <strong>integrity and authenticity</strong> for a message under a shared secret key (symmetric setting). Unlike a hash, a MAC depends on the key—an attacker cannot forge a valid MAC without key material (assuming correct usage and threat model).</p>
 <p>In ISO8583-style flows, MACs often protect:</p>
@@ -148,7 +148,7 @@ assert mac_on_wire == expected</code></pre>
 <p><strong>posAllInOne</strong> bundles MAC workflows alongside related payment security utilities—HMAC, CMAC, CVV tooling, PIN blocks—so you can pivot from “MAC invalid” to “field boundary wrong” quickly. That matters because MAC failures are often <strong>message formatting</strong> failures wearing a crypto costume.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>ISO 9797-flavored retail MAC is precise engineering: correct bytes, correct keying, correct padding, correct truncation. Name the standard your network uses, pin vectors, and automate regression.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and stop treating MAC mismatches like mystery noise—turn them into reproducible, byte-level diffs.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and stop treating MAC mismatches like mystery noise—turn them into reproducible, byte-level diffs.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

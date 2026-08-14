@@ -10,17 +10,17 @@
     <meta name="keywords" content="Field 3, processing code, ISO 8583, transaction type, account type">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/iso8583-processing-codes-guide.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/iso8583-processing-codes-guide.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/iso8583-processing-codes-guide.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/iso8583-processing-codes-guide.html">
     <meta property="og:title" content="ISO 8583 Processing Codes (Field 3): Transaction Types, Account Types, and Safe Parsing">
     <meta property="og:description" content="Decode ISO 8583 Field 3 processing codes—transaction types, account types, and common pitfalls—so your host logic matches acquirer expectations.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ISO 8583 Processing Codes (Field 3): Transaction Types, Account Types, and Safe Parsing">
     <meta name="twitter:description" content="Decode ISO 8583 Field 3 processing codes—transaction types, account types, and common pitfalls—so your host logic matches acquirer expectations.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-03-10",
-  "url": "https://posAllInOne.vercel.app/blogs/iso8583-processing-codes-guide.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/iso8583-processing-codes-guide.html",
+  "url": "https://posallinone.vercel.app/blogs/iso8583-processing-codes-guide.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/iso8583-processing-codes-guide.html",
   "keywords": "Field 3, processing code, ISO 8583, transaction type, account type"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p><strong>Field 3</strong>—the <strong>processing code</strong>—is one of the highest-impact fields in <strong>ISO 8583</strong> because it tells the receiving system <em>what kind of transaction</em> you believe you are performing, often down to account-from/account-to semantics. When Field 3 disagrees with other fields (amount signs, amounts in the wrong fields, EMV indicators, token usage), you get confusing declines, partial authorizations, or “successful” responses that do not match reconciliation.</p>
-<p>This guide explains how processing codes are typically structured, what teams usually mean by <strong>transaction type</strong> vs <strong>account type</strong>, and how to avoid the most common integration mistakes—plus how <strong>posAllInOne</strong> helps payment developers validate message artifacts locally on <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>).</p>
+<p>This guide explains how processing codes are typically structured, what teams usually mean by <strong>transaction type</strong> vs <strong>account type</strong>, and how to avoid the most common integration mistakes—plus how <strong>posAllInOne</strong> helps payment developers validate message artifacts locally on <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>).</p>
 <h2 id="what-field-3-is-supposed-to-do">What Field 3 is supposed to do</h2>
 <p>Field 3 is a compact code that classifies the transaction for routing and processing logic. Rather than encoding every business rule in free text, networks use structured digits so switches can quickly decide which validations apply.</p>
 <p><strong>Important:</strong> The precise digit meanings are defined by your <strong>network implementation guide</strong>. ISO 8583 defines a framework; your acquirer/processor defines the operational mapping.</p>

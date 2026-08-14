@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://posAllInOne.vercel.app/sitemap.xml
+Sitemap: https://posallinone.vercel.app/sitemap.xml
 
 User-agent: Googlebot
 Allow: /

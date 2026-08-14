@@ -10,17 +10,17 @@
     <meta name="keywords" content="PVV, Visa, PIN verification, HSM, payment security">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/pin-verification-value-pvv.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/pin-verification-value-pvv.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/pin-verification-value-pvv.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/pin-verification-value-pvv.html">
     <meta property="og:title" content="PIN Verification Value (PVV): How Visa PVV Is Generated and Checked">
     <meta property="og:description" content="Understand PVV algorithms for Visa PIN verification: inputs, keys, generation vs verification, and practical testing pitfalls to avoid.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="PIN Verification Value (PVV): How Visa PVV Is Generated and Checked">
     <meta name="twitter:description" content="Understand PVV algorithms for Visa PIN verification: inputs, keys, generation vs verification, and practical testing pitfalls to avoid.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-07-25",
-  "url": "https://posAllInOne.vercel.app/blogs/pin-verification-value-pvv.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/pin-verification-value-pvv.html",
+  "url": "https://posallinone.vercel.app/blogs/pin-verification-value-pvv.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/pin-verification-value-pvv.html",
   "keywords": "PVV, Visa, PIN verification, HSM, payment security"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Few three-letter acronyms create as much quiet chaos in issuer migrations as <strong>PVV</strong>—the <strong>PIN Verification Value</strong>. It looks like just another digits-on-track field until you realize it binds together <strong>PAN selection</strong>, <strong>PIN encryption keys</strong>, <strong>DES transforms</strong>, and a specific digit extraction ritual that must match exactly between card personalization, issuer host, and HSM.</p>
-<p>If you are responsible for testing PIN mailers, PIN change, or online PIN verification, this article demystifies <strong>Visa PVV</strong> at a workflow level: what is being generated, what is being verified, and where teams waste days chasing “wrong PVK” when the real issue is <strong>PAN routing</strong> or <strong>key component handling</strong>. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools to support cryptography-heavy payment testing workflows end-to-end.</p>
+<p>If you are responsible for testing PIN mailers, PIN change, or online PIN verification, this article demystifies <strong>Visa PVV</strong> at a workflow level: what is being generated, what is being verified, and where teams waste days chasing “wrong PVK” when the real issue is <strong>PAN routing</strong> or <strong>key component handling</strong>. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools to support cryptography-heavy payment testing workflows end-to-end.</p>
 <h2 id="what-pvv-is-and-what-it-is-not">What PVV is (and what it is not)</h2>
 <p>PVV is a compact numeric verification artifact derived from the PIN and secret keys such that verification can occur without storing the PIN in plaintext on the issuer system (conceptually; real implementations include additional controls).</p>
 <p>PVV is <strong>not</strong>:</p>
@@ -146,7 +146,7 @@
 <p><strong>posAllInOne</strong> bundles PIN and cryptography utilities alongside message workflows—so when PVV testing reveals a mismatch, you can pivot immediately to verifying <strong>MAC</strong>, <strong>PIN block</strong>, or <strong>ISO8583</strong> field placement without reinstalling half your toolchain.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>PVV is precise: same PIN, same keys, same PAN selection—same PVV. When anything drifts, treat it like a scientific experiment: freeze inputs, log nibbles, compare against a trusted HSM reference.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and build PVV verification tests you can rerun with confidence—today, next release, and during your next HSM rotation.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and build PVV verification tests you can rerun with confidence—today, next release, and during your next HSM rotation.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

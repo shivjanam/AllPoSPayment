@@ -10,17 +10,17 @@
     <meta name="keywords" content="DUKPT, BDK, IPEK, key derivation, payment terminal">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/dukpt-key-derivation-guide.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/dukpt-key-derivation-guide.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/dukpt-key-derivation-guide.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/dukpt-key-derivation-guide.html">
     <meta property="og:title" content="DUKPT Key Derivation Explained: BDK, IPEK, Future Keys, and AES DUKPT">
     <meta property="og:description" content="DUKPT fundamentals for payment terminals: BDK, IPEK, key serial numbers, future key derivation, and ISO 9797 vs AES DUKPT considerations.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DUKPT Key Derivation Explained: BDK, IPEK, Future Keys, and AES DUKPT">
     <meta name="twitter:description" content="DUKPT fundamentals for payment terminals: BDK, IPEK, key serial numbers, future key derivation, and ISO 9797 vs AES DUKPT considerations.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-07-28",
-  "url": "https://posAllInOne.vercel.app/blogs/dukpt-key-derivation-guide.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/dukpt-key-derivation-guide.html",
+  "url": "https://posallinone.vercel.app/blogs/dukpt-key-derivation-guide.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/dukpt-key-derivation-guide.html",
   "keywords": "DUKPT, BDK, IPEK, key derivation, payment terminal"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>If you have ever watched a POS terminal “inject keys” and wondered why the whole world insists on <strong>unique keys per transaction</strong> instead of a single static PIN key, you are looking at <strong>DUKPT</strong>—Derived Unique Key Per Transaction. It is one of the most important ideas in retail PIN security: compromise of one derived key should not unravel the entire terminal estate.</p>
-<p>Yet DUKPT is also where integrations go to die quietly: a wrong <strong>KSN</strong>, a misunderstood <strong>IPEK</strong>, or a subtle mismatch between <strong>TDES DUKPT</strong> and <strong>AES DUKPT</strong> can make PIN translation succeed in a vendor demo and fail in production traffic. This guide explains the moving parts at a practitioner level and points to the testing mindset that prevents late-stage certification surprises. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including cryptography and key-management oriented workflows—to help you validate derivations and compare outputs against reference vectors.</p>
+<p>Yet DUKPT is also where integrations go to die quietly: a wrong <strong>KSN</strong>, a misunderstood <strong>IPEK</strong>, or a subtle mismatch between <strong>TDES DUKPT</strong> and <strong>AES DUKPT</strong> can make PIN translation succeed in a vendor demo and fail in production traffic. This guide explains the moving parts at a practitioner level and points to the testing mindset that prevents late-stage certification surprises. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including cryptography and key-management oriented workflows—to help you validate derivations and compare outputs against reference vectors.</p>
 <h2 id="the-problem-dukpt-solves">The problem DUKPT solves</h2>
 <p>In classic key management, reusing one symmetric key across many transactions maximizes exposure: one leak affects all historical and future traffic protected by that key. DUKPT mitigates blast radius by deriving <strong>transaction keys</strong> from a long-lived seed while ensuring cryptographic separation between transactions—when implemented correctly.</p>
 <h2 id="core-objects-you-must-never-confuse">Core objects you must never confuse</h2>
@@ -152,7 +152,7 @@
 <p><strong>posAllInOne</strong> is designed for payment engineers who need many adjacent tools in one place: DUKPT thinking intersects PIN blocks, MAC verification, key management concepts (Thales/Futurex/Atalla/SafeNet ecosystems in real deployments), and message-level debugging. A desktop toolkit reduces context switching when you are already under release pressure.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>DUKPT is stateful cryptography dressed up as “key management.” Treat KSN as part of your transaction identity, derive keys with pinned vectors, and migrate AES with explicit dual-track testing.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and build DUKPT verification that survives audits—not just demos.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and build DUKPT verification that survives audits—not just demos.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

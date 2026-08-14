@@ -10,17 +10,17 @@
     <meta name="keywords" content="DES, 3DES, TDES, encryption, payment testing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/des-3des-encryption-testing.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/des-3des-encryption-testing.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/des-3des-encryption-testing.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/des-3des-encryption-testing.html">
     <meta property="og:title" content="DES and Triple DES Encryption: Testing ECB and CBC in Payment Labs">
     <meta property="og:description" content="Test DES and Triple DES in ECB and CBC modes: key parity, IV handling, and practical encryption checks with posAllInOne.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="DES and Triple DES Encryption: Testing ECB and CBC in Payment Labs">
     <meta name="twitter:description" content="Test DES and Triple DES in ECB and CBC modes: key parity, IV handling, and practical encryption checks with posAllInOne.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-06-10",
-  "url": "https://posAllInOne.vercel.app/blogs/des-3des-encryption-testing.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/des-3des-encryption-testing.html",
+  "url": "https://posallinone.vercel.app/blogs/des-3des-encryption-testing.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/des-3des-encryption-testing.html",
   "keywords": "DES, 3DES, TDES, encryption, payment testing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Data Encryption Standard (DES) and Triple DES (3DES/TDES) remain embedded in payment ecosystems long after general-purpose IT moved to AES. PIN encryption, legacy key-wrap schemes, MAC algorithms, and interoperability with older HSMs still surface DES-family primitives—often in <strong>ECB</strong> or <strong>CBC</strong> modes with careful attention to <strong>parity-adjusted keys</strong> and correct block alignment.</p>
-<p>For testers, the goal is not “math for its own sake”—it is <strong>bit-exact reproducibility</strong>: the same key, IV, mode, and padding assumptions your host and HSM use. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop application for Windows, macOS, and Linux with 70+ payment tools, including cryptography modules (AES, DES/3DES, RSA, ECDSA, hash, FPE) alongside Host Simulator, HSM Simulator (PayShield 10K), EMV utilities, and key-management calculators.</p>
+<p>For testers, the goal is not “math for its own sake”—it is <strong>bit-exact reproducibility</strong>: the same key, IV, mode, and padding assumptions your host and HSM use. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop application for Windows, macOS, and Linux with 70+ payment tools, including cryptography modules (AES, DES/3DES, RSA, ECDSA, hash, FPE) alongside Host Simulator, HSM Simulator (PayShield 10K), EMV utilities, and key-management calculators.</p>
 <h2 id="des-vs-triple-des-in-one-paragraph">DES vs Triple DES in one paragraph</h2>
 <ul>
 <li><strong>DES</strong> uses 56-bit effective key material in an 8-byte key (8 parity bits).</li>
@@ -143,7 +143,7 @@ C1 = DES_Encrypt(K, X)</code></pre>
 <h2 id="traceability-how-labs-pass-audits">Traceability: how labs pass audits</h2>
 <p>Keep a <strong>vector register</strong>: date, library or HSM firmware version, key hex (masked in shared docs), IV, mode, plaintext category (random, all-zero, maximum length), and ciphertext. When a partner disputes a result, you can diff parameters instead of arguing from memory. For cross-border projects, also record endianness and any character-set conversion applied before encryption—those layers are where “same key, different ciphertext” mysteries originate.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>DES and Triple DES testing is about disciplined parameters: mode, IV, parity, padding, and TDES keying option. <strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>—a free desktop toolkit for encryption, payment primitives, EMV utilities, and simulators—so your lab can validate symmetric crypto with the same rigor you apply to message formats and host protocols.</p>
+<p>DES and Triple DES testing is about disciplined parameters: mode, IV, parity, padding, and TDES keying option. <strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>—a free desktop toolkit for encryption, payment primitives, EMV utilities, and simulators—so your lab can validate symmetric crypto with the same rigor you apply to message formats and host protocols.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

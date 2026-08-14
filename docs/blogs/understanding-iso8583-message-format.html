@@ -10,17 +10,17 @@
     <meta name="keywords" content="ISO 8583, message format, bitmap, payment messaging, standards">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/understanding-iso8583-message-format.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/understanding-iso8583-message-format.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/understanding-iso8583-message-format.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/understanding-iso8583-message-format.html">
     <meta property="og:title" content="Understanding the ISO 8583 Message Format: Structure, Fields, and Real-World Variants">
     <meta property="og:description" content="Learn ISO 8583 message anatomy: MTI, bitmaps, fixed and variable fields, and how implementations differ—plus how posAllInOne helps you inspect bytes.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Understanding the ISO 8583 Message Format: Structure, Fields, and Real-World Variants">
     <meta name="twitter:description" content="Learn ISO 8583 message anatomy: MTI, bitmaps, fixed and variable fields, and how implementations differ—plus how posAllInOne helps you inspect bytes.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-02-20",
-  "url": "https://posAllInOne.vercel.app/blogs/understanding-iso8583-message-format.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/understanding-iso8583-message-format.html",
+  "url": "https://posallinone.vercel.app/blogs/understanding-iso8583-message-format.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/understanding-iso8583-message-format.html",
   "keywords": "ISO 8583, message format, bitmap, payment messaging, standards"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>If you work anywhere near card acquiring, issuing switches, or payment gateways, <strong>ISO 8583</strong> is the lingua franca of <strong>financial transaction messaging</strong>. It is also famously <strong>flexible</strong>: the standard defines a framework, while real networks choose versions, field definitions, encoding rules, and custom private-use fields. That flexibility is powerful—and it is why two teams can both claim “ISO 8583 compliance” yet fail to interoperate until they align the details.</p>
-<p>This article explains the <strong>ISO 8583 message format</strong> at a practical level: what you will see on the wire (or in a host log), how <strong>bitmaps</strong> select fields, and why <strong>variants</strong> matter. Along the way, we will connect the theory to engineering workflows supported by <strong>posAllInOne</strong>, a <strong>free desktop toolkit</strong> for payment developers available for <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a>).</p>
+<p>This article explains the <strong>ISO 8583 message format</strong> at a practical level: what you will see on the wire (or in a host log), how <strong>bitmaps</strong> select fields, and why <strong>variants</strong> matter. Along the way, we will connect the theory to engineering workflows supported by <strong>posAllInOne</strong>, a <strong>free desktop toolkit</strong> for payment developers available for <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a>).</p>
 <h2 id="what-an-iso-8583-message-is-trying-to-accomplish">What an ISO 8583 message is trying to accomplish</h2>
 <p>At a high level, an ISO 8583 message is a structured way to carry <strong>authorization and financial transaction data</strong> between systems: amounts, dates, merchant identifiers, track or token data, EMV chip blobs, response codes, and many optional fields depending on the transaction type.</p>
 <p>The standard organizes content into <strong>data elements</strong> (often called <strong>fields</strong>), referenced by numbers like <strong>Field 2 (PAN)</strong> or <strong>Field 39 (Response Code)</strong>—though the exact meaning and representation can depend on your <strong>message version</strong> and <strong>network implementation</strong>.</p>

@@ -10,17 +10,17 @@
     <meta name="keywords" content="HMAC, CMAC, AES, SHA-256, payment security">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/hmac-cmac-calculation.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/hmac-cmac-calculation.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/hmac-cmac-calculation.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/hmac-cmac-calculation.html">
     <meta property="og:title" content="HMAC-SHA256 vs CMAC-AES: Choosing the Right Message Authentication Approach">
     <meta property="og:description" content="Compare HMAC-SHA256 and CMAC-AES for payment systems: strengths, common profiles, implementation notes, and testing patterns that scale.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="HMAC-SHA256 vs CMAC-AES: Choosing the Right Message Authentication Approach">
     <meta name="twitter:description" content="Compare HMAC-SHA256 and CMAC-AES for payment systems: strengths, common profiles, implementation notes, and testing patterns that scale.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-08-05",
-  "url": "https://posAllInOne.vercel.app/blogs/hmac-cmac-calculation.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/hmac-cmac-calculation.html",
+  "url": "https://posallinone.vercel.app/blogs/hmac-cmac-calculation.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/hmac-cmac-calculation.html",
   "keywords": "HMAC, CMAC, AES, SHA-256, payment security"
 }
     </script>
@@ -87,7 +87,7 @@
 <article class="blog-content">
 <p>Retail payments spent decades living inside DES-shaped boxes. Modern systems increasingly adopt <strong>HMAC</strong> with SHA-2 families and <strong>CMAC</strong> with AES—partly for strength, partly for alignment with API gateways, partly because cloud-native services prefer well-studied constructions with straightforward test vectors.</p>
 <p>But “modern” does not mean “interchangeable.” <strong>HMAC-SHA256</strong> and <strong>CMAC-AES</strong> differ in assumptions, performance profiles, key sizes, and—most importantly—what your counterpart actually implements. If you pick the wrong family, you will generate beautiful authentication tags that are correct for <em>some</em> protocol—but not yours.</p>
-<p>This article compares the two at an integrator level and outlines practical testing patterns. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including HMAC and CMAC helpers—so you can validate tags locally before you burn bridge time with partners.</p>
+<p>This article compares the two at an integrator level and outlines practical testing patterns. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free cross-platform desktop app (Windows, macOS, Linux) with 70+ payment tools—including HMAC and CMAC helpers—so you can validate tags locally before you burn bridge time with partners.</p>
 <h2 id="hmac-sha256-keyed-hashing-done-carefully">HMAC-SHA256: keyed hashing done carefully</h2>
 <p><strong>HMAC</strong> is a construction that uses a hash function (here <strong>SHA-256</strong>) with a secret key to produce an authentication tag. It is widely deployed in:</p>
 <ul>
@@ -163,7 +163,7 @@ log_hex("tag_wire", tag_truncated)</code></pre>
 <p><strong>posAllInOne</strong> is built for payment engineers who need many integrity tools in one workstation session: HMAC, CMAC, MAC/RSA-adjacent workflows, CVV/PIN utilities, and message tooling—so you can isolate whether the problem is cryptography or protocol framing.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>HMAC-SHA256 and CMAC-AES are both modern, but they are not substitutes. Pin your spec, log exact bytes, truncate exactly, and automate vectors.</p>
-<p><strong>Download posAllInOne</strong> from <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a> and ship authentication tags with evidence—not vibes.</p>
+<p><strong>Download posAllInOne</strong> from <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a> and ship authentication tags with evidence—not vibes.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>

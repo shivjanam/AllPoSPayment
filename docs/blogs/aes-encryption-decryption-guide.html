@@ -10,17 +10,17 @@
     <meta name="keywords" content="AES, encryption, CBC, CTR, payment testing">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Shiv Janam">
-    <link rel="canonical" href="https://posAllInOne.vercel.app/blogs/aes-encryption-decryption-guide.html">
+    <link rel="canonical" href="https://posallinone.vercel.app/blogs/aes-encryption-decryption-guide.html">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://posAllInOne.vercel.app/blogs/aes-encryption-decryption-guide.html">
+    <meta property="og:url" content="https://posallinone.vercel.app/blogs/aes-encryption-decryption-guide.html">
     <meta property="og:title" content="AES Encryption and Decryption: Modes, IVs, and Padding for Testers">
     <meta property="og:description" content="Practical AES-128/192/256 guide: ECB, CBC, CTR, IV rules, padding, and how to test encryption flows with posAllInOne.">
-    <meta property="og:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta property="og:image" content="https://posallinone.vercel.app/images/app.png">
     <meta property="og:site_name" content="posAllInOne">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AES Encryption and Decryption: Modes, IVs, and Padding for Testers">
     <meta name="twitter:description" content="Practical AES-128/192/256 guide: ECB, CBC, CTR, IV rules, padding, and how to test encryption flows with posAllInOne.">
-    <meta name="twitter:image" content="https://posAllInOne.vercel.app/images/app.png">
+    <meta name="twitter:image" content="https://posallinone.vercel.app/images/app.png">
     <script type="application/ld+json">
     {
   "@context": "https://schema.org",
@@ -34,11 +34,11 @@
   "publisher": {
     "@type": "Person",
     "name": "Shiv Janam",
-    "url": "https://posAllInOne.vercel.app/"
+    "url": "https://posallinone.vercel.app/"
   },
   "datePublished": "2025-06-15",
-  "url": "https://posAllInOne.vercel.app/blogs/aes-encryption-decryption-guide.html",
-  "mainEntityOfPage": "https://posAllInOne.vercel.app/blogs/aes-encryption-decryption-guide.html",
+  "url": "https://posallinone.vercel.app/blogs/aes-encryption-decryption-guide.html",
+  "mainEntityOfPage": "https://posallinone.vercel.app/blogs/aes-encryption-decryption-guide.html",
   "keywords": "AES, encryption, CBC, CTR, payment testing"
 }
     </script>
@@ -86,7 +86,7 @@
 
 <article class="blog-content">
 <p>Advanced Encryption Standard (AES) is the workhorse symmetric algorithm for modern payment platforms—protecting keys at rest, wrapping key material, securing TLS payloads, and underpinning many MAC constructions when combined with proper modes. Yet “we use AES” is never enough for a certification binder: auditors and integration partners want <strong>named modes</strong>, explicit <strong>IV/nonce</strong> rules, and unambiguous <strong>padding</strong> behavior.</p>
-<p>This guide frames AES the way payment labs need it: as a contract between components that must produce <strong>byte-identical</strong> results under pinned inputs. <strong>posAllInOne</strong> (<a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app/</a>) is a free desktop app for Windows, macOS, and Linux with 70+ tools spanning cryptography (AES, DES/3DES, RSA, ECDSA, hash, FPE), Host Simulator, HSM Simulator (PayShield 10K), EMV utilities, and payment primitives.</p>
+<p>This guide frames AES the way payment labs need it: as a contract between components that must produce <strong>byte-identical</strong> results under pinned inputs. <strong>posAllInOne</strong> (<a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app/</a>) is a free desktop app for Windows, macOS, and Linux with 70+ tools spanning cryptography (AES, DES/3DES, RSA, ECDSA, hash, FPE), Host Simulator, HSM Simulator (PayShield 10K), EMV utilities, and payment primitives.</p>
 <h2 id="aes-key-sizes-128-192-and-256-bits">AES key sizes: 128, 192, and 256 bits</h2>
 <p>AES supports:</p>
 <div class="table-wrapper"><table><thead><tr><th>Key size</th><th>Bytes</th><th>Typical notes</th></tr></thead><tbody><tr><td>AES-128</td><td>16</td><td>Ubiquitous; common in embedded constraints</td></tr><tr><td>AES-192</td><td>24</td><td>Less common but appears in some ecosystems</td></tr><tr><td>AES-256</td><td>32</td><td>Preferred where policy demands stronger keys</td></tr></tbody></table></div>
@@ -138,7 +138,7 @@
 <h2 id="using-iso8583studio-in-symmetric-crypto-work">Using posAllInOne in symmetric crypto work</h2>
 <p><strong>posAllInOne</strong> bundles AES alongside DES/3DES, RSA, ECDSA, hash functions, and FPE—plus payment utilities (CVV, PIN block, DUKPT, MAC/HMAC/CMAC) and key-management calculators (Thales, Futurex, Atalla, SafeNet, TR-31, keyshare, DEA keys). That makes it straightforward to connect “AES wrap step” with “key block parse step” in one desktop session—without exporting sensitive material to browser-based sandboxes.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>AES is simple in concept and rich in footguns: mode selection, IV/nonce discipline, padding, and wire formats must be specified like any wire protocol. <strong>Get posAllInOne</strong> at <a href="https://posAllInOne.vercel.app" target="_blank" rel="noopener">https://posAllInOne.vercel.app</a> for a free, cross-platform desktop toolkit that supports practical encryption testing alongside the broader payment and EMV workflows your team already runs.</p>
+<p>AES is simple in concept and rich in footguns: mode selection, IV/nonce discipline, padding, and wire formats must be specified like any wire protocol. <strong>Get posAllInOne</strong> at <a href="https://posallinone.vercel.app" target="_blank" rel="noopener">https://posallinone.vercel.app</a> for a free, cross-platform desktop toolkit that supports practical encryption testing alongside the broader payment and EMV workflows your team already runs.</p>
 
     <div class="blog-cta">
         <h3>Try posAllInOne Today</h3>
