@@ -197,10 +197,13 @@ BBPOS, SUNMI, or NCR self-checkout), then use **Transactions** to run the built-
 contactless, magstripe, mobile-wallet, refund, and deterministic-decline scenarios.
 
 The default **Embedded host** is deterministic and in-process, so it is suitable for CI and end-to-end
-smoke tests. The same ISO 8583 request/response engine can be pointed at a TCP or REST test bench from
+smoke tests. EMV contact/contactless scenarios also drive the existing in-process APDU/card runtime,
+including application selection, GPO, record reads, and application-cryptogram generation. The same
+ISO 8583 request/response engine can be pointed at a TCP or REST test bench from
 **Settings**. Requests use ASCII MTI + binary bitmap + ASCII field values and include common POS data elements (3, 4, 7, 11, 22, 35/55, 37, 41, 42, and 49); raw wire hex is shown in the **ISO 8583**
-tab. Device profiles describe public terminal capabilities and entry modes only; production keys,
-proprietary kernels, and scheme certification behaviour must be supplied by the relevant test lab.
+tab. The Devices tab also exposes a repeatable E2E suite and the runtime can emit JUnit XML for CI.
+Device profiles describe public terminal capabilities and entry modes only; production keys, proprietary
+kernels, and scheme certification behaviour must be supplied by the relevant test lab.
 
 #### Client Mode
 ```yaml

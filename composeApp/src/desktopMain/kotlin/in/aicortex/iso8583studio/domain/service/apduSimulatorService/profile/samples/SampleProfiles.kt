@@ -25,10 +25,10 @@ object SampleProfiles {
             append("5F2009544553542F56495341")
             // 57 13 4111111111111111 D2912201 1000000000 000F (track2 equivalent)
             append("57134111111111111111D29122011000000000000F")
-            // 8C 21 - CDOL1 (33 bytes of tag-length entries)
-            append("8C219F02069F03069F1A0295055F2A029A039C019F37049F35019F45029F4C089F3403")
-            // 8D 0C - CDOL2
-            append("8D0C910A8A0295059F37049F4C08")
+            // 8C 23 - CDOL1 (35 bytes of tag-length entries)
+            append("8C239F02069F03069F1A0295055F2A029A039C019F37049F35019F45029F4C089F3403")
+            // 8D 0E - CDOL2
+            append("8D0E910A8A0295059F37049F4C08")
             // 8E 0E - CVM list (no amounts, simple online-PIN/signature/no-cvm)
             append("8E0E0000000000000000420341031E03")
             // 9F08 02 008C - application version number
@@ -86,8 +86,8 @@ object SampleProfiles {
             // Track 2 equivalent: 5555555555554444 D 29122011000000000000 F
             append("57135555555555554444D29122011000000000000F")
             // 8C / 8D / 8E / 9F08 — same shape as Visa sample
-            append("8C1B9F02069F03069F1A0295055F2A029A039C019F37049F35019F45029F4C089F3403")
-            append("8D0C910A8A0295059F37049F4C08")
+            append("8C239F02069F03069F1A0295055F2A029A039C019F37049F35019F45029F4C089F3403")
+            append("8D0E910A8A0295059F37049F4C08")
             append("8E0E0000000000000000420341031E03")
             append("9F08020002")
         }

@@ -179,6 +179,7 @@ fun POSTerminalSimulator(
                 )
                 POSTerminalSimulatorTabs.DEVICES -> POSDeviceProfilesTab(
                     posService = posService,
+                    baseConfig = isoConfig,
                     onDeviceSelected = { profileId ->
                         posService.selectDevice(profileId)
                         onConfigChange(isoConfig.copy(deviceProfileId = profileId))

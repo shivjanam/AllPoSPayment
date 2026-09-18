@@ -62,3 +62,24 @@ class POSTestRunner(private val service: POSSimulatorService) {
         return POSScenarioSuiteResult(runs)
     }
 }
+
+/** Runs the same deterministic cases against every bundled device profile with no network. */
+data class POSDeviceMatrixResult(
+    val profile: POSDeviceProfile,
+    val suite: POSScenarioSuiteResult,
+)
+
+class POSDeviceMatrixRunner(private val baseConfig: `in`.aicortex.iso8583studio.ui.navigation.stateConfigs.pos.POSSimulatorConfig) {
+    suspend fun run(scenarios: List<POSScenario> = POSScenario.builtIns()): List<POSDeviceMatrixResult> {
+        val results = ArrayList<POSDeviceMatrixResult>(POSDeviceProfiles.all().size)
+        for (profile in POSDeviceProfiles.all()) {
+            val config = baseConfig.copy(
+                deviceProfileId = profile.id,
+                hostTransportMode = POSHostTransportMode.EMBEDDED,
+            )
+            val suite = POSTestRunner(POSSimulatorService(config)).run(scenarios)
+            results += POSDeviceMatrixResult(profile, suite)
+        }
+        return results
+    }
+}

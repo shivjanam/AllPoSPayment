@@ -1,0 +1,34 @@
+name: POS simulator E2E
+
+on:
+  pull_request:
+    paths:
+      - 'composeApp/src/desktopMain/kotlin/in/aicortex/iso8583studio/domain/service/apduSimulatorService/**'
+      - 'composeApp/src/desktopMain/kotlin/in/aicortex/iso8583studio/domain/service/posSimulatorService/**'
+      - 'composeApp/src/desktopMain/kotlin/in/aicortex/iso8583studio/ui/screens/posTerminal/**'
+      - 'composeApp/src/desktopTest/kotlin/in/aicortex/iso8583studio/posSimulator/**'
+      - 'composeApp/src/desktopMain/kotlin/in/aicortex/iso8583studio/ui/navigation/stateConfigs/pos/**'
+      - 'composeApp/build.gradle.kts'
+      - 'gradle/**'
+      - 'gradlew'
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    name: Hardware-free POS device matrix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Run POS integration tests
+        run: xvfb-run --auto-servernum ./gradlew :composeApp:desktopTest --tests '*POSSimulatorIntegrationTest' --no-daemon

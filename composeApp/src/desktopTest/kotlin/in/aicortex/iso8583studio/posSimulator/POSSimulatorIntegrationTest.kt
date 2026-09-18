@@ -4,7 +4,9 @@ import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.Iso8583Cod
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.Iso8583Message
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSCardInput
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSDeviceProfiles
+import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSDeviceMatrixRunner
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSPaymentRequest
+import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSScenario
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSSimulatorService
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSTestRunner
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSHostTransportMode
@@ -68,8 +70,29 @@ class POSSimulatorIntegrationTest {
             assertTrue(result.approved, "${profile.vendor} ${profile.model} did not approve: ${result.error}")
             assertEquals("0210", result.response?.mti)
             assertEquals("00", result.responseCode)
+            assertTrue(result.request.fields[55].orEmpty().contains("9F26"), "EMV request must carry an application cryptogram")
             service.disconnect()
         }
+    }
+
+    @Test
+    fun `mastercard wallet flow generates an EMV cryptogram`() = runBlocking {
+        val service = POSSimulatorService(config())
+        service.connect()
+        val result = service.sendScenario(service.scenarios.first { it.id == "wallet-purchase" })
+        assertTrue(result.approved)
+        assertTrue(result.request.fields[55].orEmpty().contains("9F26"))
+        assertTrue(result.request.fields[55].orEmpty().contains("4F07A0000000041010"))
+        service.disconnect()
+    }
+
+    @Test
+    fun `device matrix can run the contactless flow for every bundled device`() = runBlocking {
+        val matrix = POSDeviceMatrixRunner(config()).run(
+            listOf(POSScenario.builtIns().first { it.id == "purchase-contactless" }),
+        )
+        assertEquals(POSDeviceProfiles.all().size, matrix.size)
+        assertTrue(matrix.all { it.suite.passedAll }, "matrix failures: ${matrix.filterNot { it.suite.passedAll }}")
     }
 
     @Test

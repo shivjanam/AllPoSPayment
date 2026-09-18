@@ -62,13 +62,13 @@ enum class POSTransactionKind(val label: String, val processingCode: String, val
 /** A safe, synthetic card used by built-in scenarios. It is never a real PAN. */
 @Serializable
 data class POSCardData(
-    val pan: String = "4761739001010010",
+    val pan: String = "4111111111111111",
     val expiryYyMm: String = "2912",
     val serviceCode: String = "221",
     val cardholderName: String = "TEST CARDHOLDER",
     val aid: String = "A0000000031010",
     val applicationLabel: String = "VISA CREDIT",
-    val track2Equivalent: String = "4761739001010010D29122210000000000000",
+    val track2Equivalent: String = "4111111111111111D29122210000000000000",
     val cvm: String = "PIN",
 )
 
@@ -113,8 +113,10 @@ data class POSScenario(
                 amountMinor = 4999,
                 input = POSCardInput.NFC_MOBILE,
                 card = POSCardData(
+                    pan = "5555555555554444",
                     aid = "A0000000041010",
                     applicationLabel = "MASTERCARD",
+                    track2Equivalent = "5555555555554444D29122210000000000000",
                 ),
             ),
             POSScenario(
@@ -292,7 +294,7 @@ object POSDeviceProfiles {
         POSDeviceProfile(
             id = "ncr-self-checkout", vendor = "NCR Voyix", model = "Self-checkout POS", firmware = "Retail POS",
             terminalType = "21", terminalCapabilities = "E0F8C8", additionalCapabilities = "6000F0A001",
-            supportedPaymentMethods = setOf(PaymentMethod.CONTACT_EMV, PaymentMethod.CONTACTLESS_EMV, PaymentMethod.MAGNETIC_STRIPE, PaymentMethod.QR_CODE), contactlessLimitMinor = 5000,
+            supportedPaymentMethods = setOf(PaymentMethod.CONTACT_EMV, PaymentMethod.CONTACTLESS_EMV, PaymentMethod.MAGNETIC_STRIPE, PaymentMethod.QR_CODE, PaymentMethod.NFC), contactlessLimitMinor = 5000,
         ),
     )
 

@@ -7,8 +7,24 @@ import `in`.aicortex.iso8583studio.logging.LogEntry
 import `in`.aicortex.iso8583studio.logging.LogType
 import `in`.aicortex.iso8583studio.ui.navigation.stateConfigs.pos.POSSimulatorConfig
 import `in`.aicortex.iso8583studio.ui.screens.hostSimulator.Transaction
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.profile.samples.SampleProfiles
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.CardRuntime
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.GenerateAcHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.GetChallengeHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.GetDataHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.GpoHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.ReadRecordHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.SelectHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.runtime.handlers.VerifyHandler
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.terminal.TerminalProfiles
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.terminal.TerminalRuntime
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.terminal.TransactionRequest
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.terminal.TransactionStep
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.terminal.TransactionType
+import `in`.aicortex.iso8583studio.domain.service.apduSimulatorService.transport.LoopbackTransport
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.withContext
 import java.io.BufferedInputStream
 import java.io.BufferedOutputStream
@@ -262,7 +278,7 @@ class POSSimulatorService(
         )
     }
 
-    private fun buildRequest(request: POSPaymentRequest): Iso8583Message {
+    private suspend fun buildRequest(request: POSPaymentRequest): Iso8583Message {
         val stan = nextStan()
         val now = LocalDateTime.now()
         val dateTime = now.format(DateTimeFormatter.ofPattern("MMddHHmmss"))
@@ -286,24 +302,113 @@ class POSSimulatorService(
         fields[49] = request.currency.padStart(3, '0').takeLast(3)
         if (request.input == POSCardInput.MAGSTRIPE) fields[35] = request.card.track2Equivalent
         if (request.input in setOf(POSCardInput.CONTACT_EMV, POSCardInput.CONTACTLESS_EMV, POSCardInput.NFC_MOBILE)) {
-            fields[55] = emvData(request, now)
+            val cardFlow = simulateEmvCard(request)
+            fields[55] = emvData(request, now, cardFlow)
         }
         fields[60] = "POSSIM${selectedProfile.id.take(6).uppercase()}"
         return Iso8583Message(request.kind.requestMti, fields)
     }
 
-    private fun emvData(request: POSPaymentRequest, now: LocalDateTime): String {
+    private suspend fun simulateEmvCard(request: POSPaymentRequest): EmvCardFlowResult? {
+        val cardProfile = when {
+            request.card.aid.startsWith("A000000004", ignoreCase = true) -> SampleProfiles.mastercardDebitTest()
+            request.card.aid.startsWith("A000000003", ignoreCase = true) -> SampleProfiles.visaCreditTest()
+            else -> return null
+        }
+        return try {
+            val runtime = CardRuntime(
+                cardProfile,
+                listOf(
+                    SelectHandler(),
+                    GpoHandler(),
+                    ReadRecordHandler(),
+                    GetDataHandler(),
+                    GetChallengeHandler(),
+                    VerifyHandler(),
+                    GenerateAcHandler(),
+                ),
+            )
+            val transport = LoopbackTransport(runtime)
+            transport.connect()
+            val now = LocalDateTime.now()
+            val terminalRuntime = TerminalRuntime(transport, TerminalProfiles.attendedRetailIN())
+            val transactionType = when (request.kind) {
+                POSTransactionKind.REFUND -> TransactionType.REFUND
+                POSTransactionKind.PREAUTH -> TransactionType.PURCHASE
+                POSTransactionKind.VOID -> TransactionType.PURCHASE
+                POSTransactionKind.REVERSAL -> TransactionType.PURCHASE
+                POSTransactionKind.COMPLETION -> TransactionType.PURCHASE
+                POSTransactionKind.PURCHASE -> TransactionType.PURCHASE
+            }
+            val steps = terminalRuntime.run(
+                TransactionRequest(
+                    amount = request.amountMinor,
+                    type = transactionType,
+                    date = now.format(DateTimeFormatter.ofPattern("yyMMdd")),
+                    time = now.format(DateTimeFormatter.ofPattern("HHmmss")),
+                ),
+            ).toList()
+            val outcome = steps.filterIsInstance<TransactionStep.Outcome>().lastOrNull()
+            if (outcome == null) {
+                val reason = steps.filterIsInstance<TransactionStep.Aborted>().lastOrNull()?.reason
+                    ?: "card runtime did not produce a cryptogram"
+                log(LogType.WARNING, "EMV card flow did not complete", reason)
+                null
+            } else {
+                log(LogType.DEBUG, "EMV card flow completed", "AID=${request.card.aid}, AC=${Iso8583Codec.hex(outcome.ac)}, ATC=${outcome.atc}")
+                EmvCardFlowResult(
+                    ac = outcome.ac,
+                    cid = outcome.cid,
+                    atc = outcome.atc,
+                    iad = outcome.iad,
+                    tvr = outcome.tvr,
+                    tsi = outcome.tsi,
+                )
+            }
+        } catch (t: Throwable) {
+            // A host-facing test should still be useful when a custom card profile is incomplete;
+            // the request falls back to a deterministic synthetic EMV payload and the problem is
+            // visible in the POS log rather than being silently swallowed.
+            log(LogType.WARNING, "EMV card runtime fallback", t.message ?: t::class.simpleName)
+            null
+        }
+    }
+
+    private fun emvData(
+        request: POSPaymentRequest,
+        now: LocalDateTime,
+        cardFlow: EmvCardFlowResult?,
+    ): String {
         val amount = request.amountMinor.toString().padStart(12, '0')
         val date = now.format(DateTimeFormatter.ofPattern("yyMMdd"))
         val time = now.format(DateTimeFormatter.ofPattern("HHmmss"))
-        // Synthetic EMV payload: valid tag/length/value structure, with no production keys.
+        // Synthetic values are test-only. When available, 9F26/9F27/9F36/9F10 and the TVR/TSI
+        // come from the existing in-process EMV card runtime, not from a placeholder constant.
         fun tlv(tag: String, value: String): String =
             tag + (value.length / 2).toString(16).padStart(2, '0') + value
+        val dynamic = cardFlow?.let {
+            tlv("82", "1980") +
+                tlv("95", Iso8583Codec.hex(it.tvr)) +
+                tlv("9B", Iso8583Codec.hex(it.tsi)) +
+                tlv("9F26", Iso8583Codec.hex(it.ac)) +
+                tlv("9F27", "%02X".format(it.cid and 0xFF)) +
+                tlv("9F36", "%04X".format(it.atc and 0xFFFF)) +
+                if (it.iad.isNotEmpty()) tlv("9F10", Iso8583Codec.hex(it.iad)) else ""
+        }.orEmpty()
         return tlv("9F02", amount) + tlv("9F03", "000000000000") + tlv("9F1A", "0356") +
             tlv("5F2A", "0356") + tlv("9A", date) + tlv("9F21", time) +
             tlv("9F37", "A1B2C3D4") + tlv("9F35", selectedProfile.terminalType) +
-            tlv("9F33", selectedProfile.terminalCapabilities) + tlv("4F", request.card.aid)
+            tlv("9F33", selectedProfile.terminalCapabilities) + tlv("4F", request.card.aid) + dynamic
     }
+
+    private data class EmvCardFlowResult(
+        val ac: ByteArray,
+        val cid: Int,
+        val atc: Int,
+        val iad: ByteArray,
+        val tvr: ByteArray,
+        val tsi: ByteArray,
+    )
 
     private suspend fun exchange(payload: ByteArray, request: POSPaymentRequest): ByteArray {
         return when (hostConfig.mode) {
