@@ -313,7 +313,10 @@ class POSSimulatorService(
         val cardProfile = when {
             request.card.aid.startsWith("A000000004", ignoreCase = true) -> SampleProfiles.mastercardDebitTest()
             request.card.aid.startsWith("A000000003", ignoreCase = true) -> SampleProfiles.visaCreditTest()
-            else -> return null
+            else -> {
+                log(LogType.WARNING, "No bundled EMV card profile for AID", request.card.aid)
+                return null
+            }
         }
         return try {
             val runtime = CardRuntime(
@@ -394,7 +397,12 @@ class POSSimulatorService(
                 tlv("9F27", "%02X".format(it.cid and 0xFF)) +
                 tlv("9F36", "%04X".format(it.atc and 0xFFFF)) +
                 if (it.iad.isNotEmpty()) tlv("9F10", Iso8583Codec.hex(it.iad)) else ""
-        }.orEmpty()
+        } ?: (
+            // Keep custom/unknown AIDs testable even when no matching sample card profile exists.
+            // This is explicitly synthetic and is called out in the log by simulateEmvCard.
+            tlv("9F26", "A1B2C3D4E5F60718") +
+                tlv("9F27", "80") + tlv("9F36", "0001")
+            )
         return tlv("9F02", amount) + tlv("9F03", "000000000000") + tlv("9F1A", "0356") +
             tlv("5F2A", "0356") + tlv("9A", date) + tlv("9F21", time) +
             tlv("9F37", "A1B2C3D4") + tlv("9F35", selectedProfile.terminalType) +
