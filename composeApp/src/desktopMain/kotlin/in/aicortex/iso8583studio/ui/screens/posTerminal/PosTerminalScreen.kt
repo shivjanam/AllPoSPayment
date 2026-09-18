@@ -23,6 +23,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSFrameFormat
+import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSHostTransportMode
+import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSScenario
 import `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSSimulatorService
 import `in`.aicortex.iso8583studio.logging.LogEntry
 import `in`.aicortex.iso8583studio.ui.SuccessGreen
@@ -30,16 +33,16 @@ import `in`.aicortex.iso8583studio.ui.navigation.stateConfigs.pos.POSSimulatorCo
 import `in`.aicortex.iso8583studio.ui.screens.components.AppBarWithBack
 import `in`.aicortex.iso8583studio.ui.screens.components.Panel
 import `in`.aicortex.iso8583studio.ui.screens.hostSimulator.LogTab
-import `in`.aicortex.iso8583studio.ui.screens.hostSimulator.Transaction
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 // Aligned Enum with Icons, matching the HostSimulator theme
 private enum class POSTerminalSimulatorTabs(val title: String, val icon: ImageVector) {
     TRANSACTIONS("Transactions", Icons.Default.SwapHoriz),
+    DEVICES("Devices", Icons.Default.PhoneAndroid),
     LOGS("Logs", Icons.Default.Article),
     SETTINGS("Settings", Icons.Default.Settings),
-    TEMPLATE("Template", Icons.Default.Code),
+    TEMPLATE("ISO 8583", Icons.Default.Code),
 }
 
 // --- MAIN SCREEN & UI COMPOSABLES ---
@@ -50,6 +53,7 @@ fun POSTerminalSimulatorScreen(
     config: POSSimulatorConfig?,
     onBack: () -> Unit,
     onSaveClick: () -> Unit,
+    onConfigChange: (POSSimulatorConfig) -> Unit = {},
 ) {
     if (config == null) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -58,7 +62,12 @@ fun POSTerminalSimulatorScreen(
         return
     }
 
-    val posService = remember { POSSimulatorService(config) }
+    val posService = remember(config.id) { POSSimulatorService(config) }
+    val coroutineScope = rememberCoroutineScope()
+
+    DisposableEffect(posService) {
+        onDispose { if (posService.isConnected) coroutineScope.launch { posService.disconnect() } }
+    }
 
     Scaffold(
         topBar = {
@@ -78,6 +87,7 @@ fun POSTerminalSimulatorScreen(
             posService = posService,
             isoConfig = config,
             onSaveClick = onSaveClick,
+            onConfigChange = onConfigChange,
             modifier = Modifier.padding(paddingValues)
         )
     }
@@ -88,6 +98,7 @@ fun POSTerminalSimulator(
     posService: POSSimulatorService,
     isoConfig: POSSimulatorConfig,
     onSaveClick: () -> Unit,
+    onConfigChange: (POSSimulatorConfig) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var isConnected by remember { mutableStateOf(posService.isConnected) }
@@ -153,18 +164,25 @@ fun POSTerminalSimulator(
                     isConnected = isConnected,
                     onConnectDisconnect = {
                         coroutineScope.launch {
-//                            if (posService.isConnected) posService.disconnect() else posService.connect()
+                            runCatching {
+                                if (posService.isConnected) posService.disconnect() else posService.connect()
+                            }
                         }
                     },
-                    onTransactionSend = { transaction ->
-                        coroutineScope.launch {
-//                            posService.sendTransaction(transaction)
-                        }
+                    onTransactionSend = { scenario ->
+                        coroutineScope.launch { posService.sendScenario(scenario) }
                     },
                     request = request,
                     response = response,
                     onClearClick = { request = ""; response = "" },
                     isoConfig = isoConfig
+                )
+                POSTerminalSimulatorTabs.DEVICES -> POSDeviceProfilesTab(
+                    posService = posService,
+                    onDeviceSelected = { profileId ->
+                        posService.selectDevice(profileId)
+                        onConfigChange(isoConfig.copy(deviceProfileId = profileId))
+                    }
                 )
                 // Re-using the LogTab composable from hostSimulator for consistency
                 POSTerminalSimulatorTabs.LOGS -> LogTab(
@@ -177,13 +195,14 @@ fun POSTerminalSimulator(
                 )
                 POSTerminalSimulatorTabs.SETTINGS -> POSSettingsTab(
                     posService = posService,
-                    onSaveClick = onSaveClick
+                    onSaveClick = onSaveClick,
+                    onConfigChange = onConfigChange,
+                    isoConfig = isoConfig,
                 )
-                // Re-using the Iso8583TemplateScreen for consistency
-                POSTerminalSimulatorTabs.TEMPLATE -> Text("Pending") /*Iso8583TemplateScreen(
-                    config = isoConfig,
-                    onSaveClick = onSaveClick
-                )*/
+                POSTerminalSimulatorTabs.TEMPLATE -> POSIso8583TemplateTab(
+                    request = request,
+                    response = response,
+                )
             }
         }
     }
@@ -194,14 +213,14 @@ fun POSTransactionTab(
     posService: POSSimulatorService,
     isConnected: Boolean,
     onConnectDisconnect: () -> Unit,
-    onTransactionSend: (Transaction) -> Unit,
+    onTransactionSend: (POSScenario) -> Unit,
     request: String,
     response: String,
     onClearClick: () -> Unit,
     isoConfig: POSSimulatorConfig
 ) {
-    val transactions = remember { isoConfig.simulatedTransactionsToDest.toMutableStateList() }
-    var selectedTransaction by remember { mutableStateOf<Transaction?>(null) }
+    val transactions = posService.scenarios
+    var selectedTransaction by remember { mutableStateOf<POSScenario?>(transactions.firstOrNull()) }
     var isSending by remember { mutableStateOf(false) }
 
     val coroutineScope = rememberCoroutineScope()
@@ -286,14 +305,49 @@ fun POSTransactionTab(
 }
 
 @Composable
-fun POSSettingsTab(posService: POSSimulatorService, onSaveClick: () -> Unit) {
+fun POSSettingsTab(
+    posService: POSSimulatorService,
+    onSaveClick: () -> Unit,
+    onConfigChange: (POSSimulatorConfig) -> Unit,
+    isoConfig: POSSimulatorConfig,
+) {
     Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         var address by remember(posService.hostAddress) { mutableStateOf(posService.hostAddress) }
         var port by remember(posService.hostPort) { mutableStateOf(posService.hostPort.toString()) }
+        var modeMenuOpen by remember { mutableStateOf(false) }
+        var frameMenuOpen by remember { mutableStateOf(false) }
 
         Card(modifier = Modifier.fillMaxWidth()) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text("Host Connection Settings", style = MaterialTheme.typography.h6)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Transport: ")
+                    Button(onClick = { modeMenuOpen = true }, enabled = !posService.isConnected) {
+                        Text(posService.hostMode.label)
+                    }
+                    DropdownMenu(expanded = modeMenuOpen, onDismissRequest = { modeMenuOpen = false }) {
+                        POSHostTransportMode.values().forEach { mode ->
+                            DropdownMenuItem(onClick = {
+                                posService.hostMode = mode
+                                modeMenuOpen = false
+                            }) { Text(mode.label) }
+                        }
+                    }
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("TCP framing: ")
+                    Button(onClick = { frameMenuOpen = true }, enabled = !posService.isConnected) {
+                        Text(posService.frameFormat.label)
+                    }
+                    DropdownMenu(expanded = frameMenuOpen, onDismissRequest = { frameMenuOpen = false }) {
+                        POSFrameFormat.values().forEach { format ->
+                            DropdownMenuItem(onClick = {
+                                posService.frameFormat = format
+                                frameMenuOpen = false
+                            }) { Text(format.label) }
+                        }
+                    }
+                }
                 FixedOutlinedTextField(
                     value = address,
                     onValueChange = { address = it },
@@ -311,7 +365,15 @@ fun POSSettingsTab(posService: POSSimulatorService, onSaveClick: () -> Unit) {
                 Button(
                     onClick = {
                         posService.hostAddress = address
-                        posService.hostPort = port.toIntOrNull() ?: 8080
+                        posService.hostPort = port.toIntOrNull() ?: 8583
+                        onConfigChange(
+                            isoConfig.copy(
+                                hostAddress = address,
+                                hostPort = posService.hostPort,
+                                hostTransportMode = posService.hostMode,
+                                hostFrameFormat = posService.frameFormat,
+                            )
+                        )
                         onSaveClick() // Persist the change
                     },
                     enabled = !posService.isConnected
@@ -324,7 +386,7 @@ fun POSSettingsTab(posService: POSSimulatorService, onSaveClick: () -> Unit) {
 }
 
 @Composable
-fun TransactionListItem(transaction: Transaction, isSelected: Boolean, onClick: () -> Unit) {
+fun TransactionListItem(transaction: POSScenario, isSelected: Boolean, onClick: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
         elevation = if (isSelected) 4.dp else 1.dp,
@@ -333,8 +395,8 @@ fun TransactionListItem(transaction: Transaction, isSelected: Boolean, onClick: 
     ) {
         Row(modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
             Column(modifier = Modifier.weight(1f)) {
-                Text(transaction.description, fontWeight = FontWeight.Bold)
-                Text("MTI: ${transaction.mti}", style = MaterialTheme.typography.caption)
+                Text(transaction.name, fontWeight = FontWeight.Bold)
+                Text("${transaction.input.label} • ${transaction.amountMinor} minor units • ${transaction.description}", style = MaterialTheme.typography.caption)
             }
             if (isSelected) {
                 Icon(Icons.Default.CheckCircle, "Selected", tint = MaterialTheme.colors.primary, modifier = Modifier.padding(start = 8.dp))

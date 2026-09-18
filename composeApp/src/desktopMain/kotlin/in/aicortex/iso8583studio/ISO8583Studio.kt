@@ -533,7 +533,8 @@ private fun SessionContent(
                 window = window as androidx.compose.ui.awt.ComposeWindow,
                 config = config,
                 onBack = onBack,
-                onSaveClick = { appState.value.save() }
+                onSaveClick = { appState.value.save() },
+                onConfigChange = { appState.value.updateConfig(it) }
             )
         }
 

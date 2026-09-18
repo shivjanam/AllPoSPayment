@@ -700,7 +700,8 @@ sealed class Destination : Screen {
                     window = it,
                     config = appState.value.currentConfig(SimulatorType.POS) as POSSimulatorConfig,
                     onBack = { navigationController.goBack() },
-                    onSaveClick = { appState.value.save() }
+                    onSaveClick = { appState.value.save() },
+                    onConfigChange = { appState.value.updateConfig(it) }
                 )
             }
         }

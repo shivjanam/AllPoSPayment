@@ -31,6 +31,19 @@ data class POSSimulatorConfig(
     val contactlessConfig: ContactlessConfig = ContactlessConfig(),
     val pinpadConfig: PinpadConfig = PinpadConfig(),
     var profileName: String = "New POS Profile",
+    /** Built-in vendor/device profile used by the hardware-free POS runtime. */
+    val deviceProfileId: String = "ingenico-telium",
+    /** Host transport defaults to an embedded deterministic host for offline E2E testing. */
+    val hostTransportMode: `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSHostTransportMode =
+        `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSHostTransportMode.EMBEDDED,
+    val hostAddress: String = "127.0.0.1",
+    val hostPort: Int = 8583,
+    val hostFrameFormat: `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSFrameFormat =
+        `in`.aicortex.iso8583studio.domain.service.posSimulatorService.POSFrameFormat.NONE,
+    val hostTimeoutMs: Int = 5000,
+    val embeddedResponseCode: String = "00",
+    val embeddedApprovalLimit: Long? = null,
+    val embeddedLatencyMs: Long = 75,
     // Hardware
     var pinEntryOptions: String = "Integrated PIN pad",
     var cardReaderTypes: String = "Triple-head reader (MSR + chip + contactless)",

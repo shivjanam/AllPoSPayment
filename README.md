@@ -188,6 +188,20 @@ Configuration:
 - Authorization servers
 - Transaction switches
 
+#### Hardware-free POS device simulator
+
+The POS Terminal simulator now runs complete terminal-to-host authorization flows without a reader,
+PIN pad, NFC antenna, or vendor SDK. Open **POS Terminal → Devices** to select a virtual device
+profile (Ingenico Telium/TETRA, Verifone Engage, PAX A-series, Castles, Newland, Clover, Square,
+BBPOS, SUNMI, or NCR self-checkout), then use **Transactions** to run the built-in contact,
+contactless, magstripe, mobile-wallet, refund, and deterministic-decline scenarios.
+
+The default **Embedded host** is deterministic and in-process, so it is suitable for CI and end-to-end
+smoke tests. The same ISO 8583 request/response engine can be pointed at a TCP or REST test bench from
+**Settings**. Requests use ASCII MTI + binary bitmap + ASCII field values and include common POS data elements (3, 4, 7, 11, 22, 35/55, 37, 41, 42, and 49); raw wire hex is shown in the **ISO 8583**
+tab. Device profiles describe public terminal capabilities and entry modes only; production keys,
+proprietary kernels, and scheme certification behaviour must be supplied by the relevant test lab.
+
 #### Client Mode
 ```yaml
 Configuration:

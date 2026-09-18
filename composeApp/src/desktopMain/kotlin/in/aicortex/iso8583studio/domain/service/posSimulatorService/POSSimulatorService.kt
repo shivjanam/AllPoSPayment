@@ -6,41 +6,449 @@ import androidx.compose.runtime.setValue
 import `in`.aicortex.iso8583studio.logging.LogEntry
 import `in`.aicortex.iso8583studio.logging.LogType
 import `in`.aicortex.iso8583studio.ui.navigation.stateConfigs.pos.POSSimulatorConfig
-import kotlinx.coroutines.CoroutineScope
+import `in`.aicortex.iso8583studio.ui.screens.hostSimulator.Transaction
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import java.io.InputStream
-import java.io.OutputStream
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.net.HttpURLConnection
+import java.net.InetSocketAddress
 import java.net.Socket
+import java.net.URL
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.atomic.AtomicInteger
 
-// Dedicated service for POS client logic
+/**
+ * Hardware-free POS terminal service.
+ *
+ * This is the seam between the UI and a terminal implementation. It has three host modes:
+ *
+ *  - EMBEDDED: a deterministic acquirer/issuer stub in the same process (default);
+ *  - TCP: a framed ISO 8583 connection to a switch or Host Simulator;
+ *  - REST: a raw ISO 8583 POST for HTTP test benches.
+ *
+ * A real card reader, PIN pad, NFC antenna and vendor SDK are never required. The selected device
+ * profile changes the terminal capabilities and entry mode while the same host-facing contract is
+ * exercised for every supported device family.
+ */
 class POSSimulatorService(
-    private val isoConfig: POSSimulatorConfig // For packing/unpacking messages
+    private val isoConfig: POSSimulatorConfig,
 ) {
-    var hostAddress by mutableStateOf("127.0.0.1")
-    var hostPort by mutableStateOf(8080)
+    var hostAddress by mutableStateOf(isoConfig.hostAddress)
+    var hostPort by mutableStateOf(isoConfig.hostPort)
 
-    private var clientSocket: Socket? = null
-    private var outputStream: OutputStream? = null
-    private var inputStream: InputStream? = null
-    private val serviceScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val stanCounter = AtomicInteger(100000)
+    private var socket: Socket? = null
+    private var tcpInput: BufferedInputStream? = null
+    private var tcpOutput: BufferedOutputStream? = null
 
     var isConnected by mutableStateOf(false)
         private set
+    var state by mutableStateOf(POSDeviceState.DISCONNECTED)
+        private set
+    var selectedProfile by mutableStateOf(POSDeviceProfiles.byId(isoConfig.deviceProfileId))
+        private set
+    var hostMode by mutableStateOf(isoConfig.hostTransportMode)
+    var frameFormat by mutableStateOf(isoConfig.hostFrameFormat)
+    var metrics by mutableStateOf(POSMetrics())
+        private set
+    var lastResult by mutableStateOf<POSAuthorizationResult?>(null)
+        private set
 
-    // --- UI Callbacks ---
+    /** Built-in scenarios remain available even when an imported POS profile has no saved templates. */
+    val scenarios: List<POSScenario> = POSScenario.builtIns() +
+        isoConfig.simulatedTransactionsToDest.mapIndexed { index, transaction -> legacyScenario(index, transaction) }
+
+    // Existing UI callbacks are retained for compatibility with old saved sessions.
     var onLog: (LogEntry) -> Unit = {}
     var onRequestSent: (String) -> Unit = {}
     var onResponseReceived: (String) -> Unit = {}
     var onConnectionStateChange: (Boolean) -> Unit = {}
+    var onEvent: (POSDeviceEvent) -> Unit = {}
 
+    private val hostConfig: POSHostSimulatorConfig
+        get() = POSHostSimulatorConfig(
+            mode = hostMode,
+            address = hostAddress,
+            port = hostPort,
+            frameFormat = frameFormat,
+            timeoutMs = isoConfig.hostTimeoutMs.coerceIn(250, 120_000),
+            responseCode = isoConfig.embeddedResponseCode,
+            approvalLimit = isoConfig.embeddedApprovalLimit,
+            latencyMs = isoConfig.embeddedLatencyMs.coerceAtLeast(0),
+        )
 
+    fun selectDevice(profileId: String) {
+        selectedProfile = POSDeviceProfiles.byId(profileId)
+        log(LogType.INFO, "Device profile selected", "${selectedProfile.vendor} ${selectedProfile.model}")
+        onEvent(POSDeviceEvent.DeviceReady(selectedProfile.id, selectedProfile.model))
+    }
 
+    /** Connects to the configured host, or starts a local virtual host session. */
+    suspend fun connect() = withContext(Dispatchers.IO) {
+        if (isConnected) return@withContext
+        state = POSDeviceState.CONNECTING
+        onEvent(POSDeviceEvent.StateChanged(state))
+        try {
+            when (hostConfig.mode) {
+                POSHostTransportMode.EMBEDDED -> Unit
+                POSHostTransportMode.TCP -> {
+                    val newSocket = Socket()
+                    newSocket.connect(InetSocketAddress(hostAddress, hostPort), hostConfig.timeoutMs)
+                    newSocket.soTimeout = hostConfig.timeoutMs
+                    socket = newSocket
+                    tcpInput = BufferedInputStream(newSocket.getInputStream())
+                    tcpOutput = BufferedOutputStream(newSocket.getOutputStream())
+                }
+                POSHostTransportMode.REST -> validateRestEndpoint()
+            }
+            isConnected = true
+            state = POSDeviceState.READY
+            onConnectionStateChange(true)
+            onEvent(POSDeviceEvent.StateChanged(state))
+            log(LogType.CONNECTION, "POS device ready", "${selectedProfile.vendor} ${selectedProfile.model}; host=${hostConfig.mode.label}")
+        } catch (t: Throwable) {
+            state = POSDeviceState.ERROR
+            onEvent(POSDeviceEvent.Failure("Unable to connect POS host: ${t.message}", t))
+            onEvent(POSDeviceEvent.StateChanged(state))
+            log(LogType.ERROR, "POS host connection failed", t.message)
+            closeConnection()
+            throw t
+        }
+    }
 
-    private fun createLog(type: LogType, message: String, details: String? = null): LogEntry {
+    suspend fun disconnect() = withContext(Dispatchers.IO) {
+        closeConnection()
+        state = POSDeviceState.DISCONNECTED
+        onConnectionStateChange(false)
+        onEvent(POSDeviceEvent.StateChanged(state))
+        log(LogType.CONNECTION, "POS device disconnected")
+    }
+
+    /** Run one built-in or imported scenario. */
+    suspend fun sendScenario(scenario: POSScenario): POSAuthorizationResult {
+        val imported = isoConfig.simulatedTransactionsToDest.firstOrNull { transaction ->
+            scenario.id.endsWith("-${transaction.id}")
+        }
+        return if (imported != null) {
+            sendTransaction(imported)
+        } else {
+            authorize(
+                POSPaymentRequest(
+                    amountMinor = scenario.amountMinor,
+                    kind = scenario.kind,
+                    input = scenario.input,
+                    card = scenario.card,
+                    forceDecline = scenario.forceDecline,
+                )
+            )
+        }
+    }
+
+    /**
+     * Compatibility adapter for the old ISO template list. A transaction's populated bits are
+     * used when available; otherwise it becomes a normal synthetic purchase.
+     */
+    suspend fun sendTransaction(transaction: Transaction): POSAuthorizationResult {
+        val values = transaction.fields.orEmpty().mapIndexedNotNull { index, field ->
+            if (field.isSet) index + 1 to runCatching { field.getString() }.getOrNull().orEmpty() else null
+        }.toMap()
+        val amount = values[4]?.filter(Char::isDigit)?.toLongOrNull() ?: 1250L
+        val input = when (values[22]?.takeLast(1)) {
+            "1" -> POSCardInput.CONTACT_EMV
+            "2", "7" -> POSCardInput.CONTACTLESS_EMV
+            "0" -> POSCardInput.MANUAL
+            else -> POSCardInput.CONTACTLESS_EMV
+        }
+        return authorize(POSPaymentRequest(amountMinor = amount, input = input, forceDecline = false))
+    }
+
+    /** Execute a complete terminal-to-host authorisation exchange. */
+    suspend fun authorize(request: POSPaymentRequest): POSAuthorizationResult = withContext(Dispatchers.IO) {
+        check(isConnected) { "POS device is not connected to a host" }
+        require(request.amountMinor >= 0) { "Amount cannot be negative" }
+        require(selectedProfile.supports(request.input)) {
+            "${selectedProfile.vendor} ${selectedProfile.model} does not support ${request.input.label}"
+        }
+
+        state = POSDeviceState.PROCESSING
+        onEvent(POSDeviceEvent.StateChanged(state))
+        val started = System.currentTimeMillis()
+        val effectiveInput = if (
+            request.input in setOf(POSCardInput.CONTACTLESS_EMV, POSCardInput.NFC_MOBILE) &&
+            request.amountMinor > selectedProfile.contactlessLimitMinor
+        ) {
+            log(LogType.WARNING, "Contactless limit exceeded; terminal requests chip fallback", "amount=${request.amountMinor}, limit=${selectedProfile.contactlessLimitMinor}")
+            POSCardInput.CONTACT_EMV
+        } else request.input
+
+        val requestMessage = buildRequest(request.copy(input = effectiveInput))
+        val requestBytes = Iso8583Codec.encode(requestMessage)
+        onEvent(POSDeviceEvent.RequestBuilt(requestMessage, requestBytes))
+        onRequestSent(formatExchange(requestMessage, requestBytes))
+        log(LogType.MESSAGE, "ISO 8583 request sent", "${requestMessage.mti} STAN=${requestMessage.fields[11]} bytes=${requestBytes.size}")
+
+        try {
+            val responseBytes = exchange(requestBytes, request)
+            val responseMessage = Iso8583Codec.decode(responseBytes)
+            onEvent(POSDeviceEvent.ResponseReceived(responseMessage, responseBytes))
+            onResponseReceived(formatExchange(responseMessage, responseBytes))
+            val code = responseMessage.fields[39] ?: "96"
+            val result = POSAuthorizationResult(
+                approved = code == "00" || code == "08" || code == "10",
+                responseCode = code,
+                responseMessage = responseDescription(code),
+                request = requestMessage,
+                response = responseMessage,
+                requestBytes = requestBytes,
+                responseBytes = responseBytes,
+                latencyMs = System.currentTimeMillis() - started,
+            )
+            metrics = metrics.record(result)
+            lastResult = result
+            state = POSDeviceState.READY
+            onEvent(POSDeviceEvent.TransactionCompleted(result))
+            onEvent(POSDeviceEvent.StateChanged(state))
+            log(if (result.approved) LogType.AUTHORIZATION else LogType.WARNING, "${result.responseMessage} — ${request.kind.label}", "STAN=${result.stan}, RRN=${result.rrn}")
+            result
+        } catch (t: Throwable) {
+            val result = POSAuthorizationResult(
+                approved = false,
+                responseCode = "96",
+                responseMessage = "Host communication failed",
+                request = requestMessage,
+                response = null,
+                requestBytes = requestBytes,
+                responseBytes = ByteArray(0),
+                latencyMs = System.currentTimeMillis() - started,
+                error = t.message ?: t::class.simpleName,
+            )
+            metrics = metrics.record(result)
+            lastResult = result
+            state = POSDeviceState.ERROR
+            onEvent(POSDeviceEvent.Failure(result.error ?: "Host communication failed", t))
+            onEvent(POSDeviceEvent.TransactionCompleted(result))
+            onEvent(POSDeviceEvent.StateChanged(state))
+            log(LogType.ERROR, "POS transaction failed", result.error)
+            result
+        }
+    }
+
+    private fun legacyScenario(index: Int, transaction: Transaction): POSScenario {
+        val values = transaction.fields.orEmpty().mapIndexedNotNull { fieldIndex, field ->
+            if (field.isSet) fieldIndex + 1 to runCatching { field.getString() }.getOrNull().orEmpty() else null
+        }.toMap()
+        val input = when (values[22]?.takeLast(1)) {
+            "1" -> POSCardInput.CONTACT_EMV
+            "0" -> POSCardInput.MANUAL
+            "9" -> POSCardInput.MAGSTRIPE
+            else -> POSCardInput.CONTACTLESS_EMV
+        }
+        val kind = when (transaction.mti) {
+            "0100" -> POSTransactionKind.PREAUTH
+            "0400" -> POSTransactionKind.REVERSAL
+            "0220" -> POSTransactionKind.COMPLETION
+            else -> if (transaction.proCode.startsWith("20")) POSTransactionKind.REFUND else POSTransactionKind.PURCHASE
+        }
+        return POSScenario(
+            id = "legacy-$index-${transaction.id}",
+            name = transaction.description.ifBlank { "Imported ${kind.label}" },
+            description = "Imported ISO 8583 template ${transaction.id}",
+            kind = kind,
+            amountMinor = values[4]?.filter(Char::isDigit)?.toLongOrNull() ?: 1250L,
+            input = input,
+        )
+    }
+
+    private fun buildRequest(request: POSPaymentRequest): Iso8583Message {
+        val stan = nextStan()
+        val now = LocalDateTime.now()
+        val dateTime = now.format(DateTimeFormatter.ofPattern("MMddHHmmss"))
+        val localTime = now.format(DateTimeFormatter.ofPattern("HHmmss"))
+        val localDate = now.format(DateTimeFormatter.ofPattern("MMdd"))
+        val terminalId = terminalId()
+        val merchantId = merchantId()
+        val fields = linkedMapOf<Int, String>()
+        fields[2] = request.card.pan
+        fields[3] = request.kind.processingCode
+        fields[4] = request.amountMinor.toString().padStart(12, '0')
+        fields[7] = dateTime
+        fields[11] = stan
+        fields[12] = localTime
+        fields[13] = localDate
+        fields[22] = request.input.entryMode
+        fields[25] = if (request.input == POSCardInput.MAGSTRIPE) "00" else "00"
+        fields[37] = rrn(stan)
+        fields[41] = terminalId
+        fields[42] = merchantId
+        fields[49] = request.currency.padStart(3, '0').takeLast(3)
+        if (request.input == POSCardInput.MAGSTRIPE) fields[35] = request.card.track2Equivalent
+        if (request.input in setOf(POSCardInput.CONTACT_EMV, POSCardInput.CONTACTLESS_EMV, POSCardInput.NFC_MOBILE)) {
+            fields[55] = emvData(request, now)
+        }
+        fields[60] = "POSSIM${selectedProfile.id.take(6).uppercase()}"
+        return Iso8583Message(request.kind.requestMti, fields)
+    }
+
+    private fun emvData(request: POSPaymentRequest, now: LocalDateTime): String {
+        val amount = request.amountMinor.toString().padStart(12, '0')
+        val date = now.format(DateTimeFormatter.ofPattern("yyMMdd"))
+        val time = now.format(DateTimeFormatter.ofPattern("HHmmss"))
+        // Synthetic EMV payload: valid tag/length/value structure, with no production keys.
+        fun tlv(tag: String, value: String): String =
+            tag + (value.length / 2).toString(16).padStart(2, '0') + value
+        return tlv("9F02", amount) + tlv("9F03", "000000000000") + tlv("9F1A", "0356") +
+            tlv("5F2A", "0356") + tlv("9A", date) + tlv("9F21", time) +
+            tlv("9F37", "A1B2C3D4") + tlv("9F35", selectedProfile.terminalType) +
+            tlv("9F33", selectedProfile.terminalCapabilities) + tlv("4F", request.card.aid)
+    }
+
+    private suspend fun exchange(payload: ByteArray, request: POSPaymentRequest): ByteArray {
+        return when (hostConfig.mode) {
+            POSHostTransportMode.EMBEDDED -> EmbeddedPOSHost.respond(payload, request, hostConfig, selectedProfile)
+            POSHostTransportMode.TCP -> exchangeTcp(payload)
+            POSHostTransportMode.REST -> exchangeRest(payload)
+        }
+    }
+
+    private suspend fun exchangeTcp(payload: ByteArray): ByteArray {
+        val output = tcpOutput ?: error("TCP output is not open")
+        val input = tcpInput ?: error("TCP input is not open")
+        val frame = POSFrameCodec.encode(payload, hostConfig.frameFormat)
+        output.write(frame)
+        output.flush()
+        return readFrame(input, hostConfig.frameFormat, hostConfig.timeoutMs)
+    }
+
+    private fun exchangeRest(payload: ByteArray): ByteArray {
+        val connection = (URL("http://${hostAddress}:${hostPort}/iso8583").openConnection() as HttpURLConnection).apply {
+            requestMethod = "POST"
+            connectTimeout = hostConfig.timeoutMs
+            readTimeout = hostConfig.timeoutMs
+            doOutput = true
+            setRequestProperty("Content-Type", "application/octet-stream")
+        }
+        return try {
+            connection.outputStream.use { it.write(payload) }
+            val stream = if (connection.responseCode in 200..299) connection.inputStream else connection.errorStream
+            requireNotNull(stream) { "REST host returned HTTP ${connection.responseCode}" }.use { it.readBytes() }
+        } finally {
+            connection.disconnect()
+        }
+    }
+
+    private fun readFrame(input: BufferedInputStream, format: POSFrameFormat, timeoutMs: Int): ByteArray {
+        val headerSize = POSFrameCodec.headerSize(format)
+        if (format == POSFrameFormat.NONE) {
+            val first = input.read()
+            require(first >= 0) { "host closed the connection" }
+            val output = java.io.ByteArrayOutputStream()
+            output.write(first)
+            val deadline = System.currentTimeMillis() + timeoutMs
+            while (System.currentTimeMillis() < deadline) {
+                if (input.available() > 0) output.write(input.read()) else Thread.sleep(5)
+            }
+            return output.toByteArray()
+        }
+        val header = input.readExactly(headerSize)
+        val length = POSFrameCodec.readLength(header, format)
+        require(length in 1..1_000_000) { "invalid host frame length $length" }
+        return input.readExactly(length)
+    }
+
+    private fun validateRestEndpoint() {
+        require(hostAddress.isNotBlank()) { "REST host address is blank" }
+        require(hostPort in 1..65535) { "REST host port is invalid" }
+    }
+
+    private fun closeConnection() {
+        runCatching { tcpInput?.close() }
+        runCatching { tcpOutput?.close() }
+        runCatching { socket?.close() }
+        tcpInput = null
+        tcpOutput = null
+        socket = null
+        isConnected = false
+    }
+
+    private fun nextStan(): String {
+        val next = stanCounter.updateAndGet { current -> if (current >= 999999) 1 else current + 1 }
+        return next.toString().padStart(6, '0')
+    }
+
+    private fun rrn(stan: String): String = (LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMdd")) + stan).takeLast(12)
+
+    private fun terminalId(): String {
+        val configured = isoConfig.terminalid
+        return if (configured > 0) configured.toString().padStart(8, '0').takeLast(8) else "SIM" + selectedProfile.id.filter(Char::isLetterOrDigit).take(5).uppercase().padEnd(5, '0')
+    }
+
+    private fun merchantId(): String {
+        val configured = isoConfig.merchantid
+        return if (configured > 0) configured.toString().padStart(15, '0').takeLast(15) else "SIMULATOR MERCHANT".padEnd(15, ' ').take(15)
+    }
+
+    private fun formatExchange(message: Iso8583Message, bytes: ByteArray): String =
+        Iso8583Codec.display(message) + "Raw hex: " + Iso8583Codec.hex(bytes)
+
+    private fun log(type: LogType, message: String, details: String? = null) {
         val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SSS"))
-        return LogEntry(timestamp, type, message, details)
+        onLog(LogEntry(timestamp, type, message, details, source = "POS/${selectedProfile.id}"))
+    }
+
+    private fun BufferedInputStream.readExactly(size: Int): ByteArray {
+        val result = ByteArray(size)
+        var offset = 0
+        while (offset < size) {
+            val read = read(result, offset, size - offset)
+            require(read >= 0) { "host closed connection after $offset of $size bytes" }
+            offset += read
+        }
+        return result
+    }
+}
+
+/** Deterministic issuer/acquirer used by the default no-hardware test mode. */
+private object EmbeddedPOSHost {
+    suspend fun respond(
+        payload: ByteArray,
+        request: POSPaymentRequest,
+        config: POSHostSimulatorConfig,
+        profile: POSDeviceProfile,
+    ): ByteArray {
+        if (config.latencyMs > 0) delay(config.latencyMs)
+        val decoded = Iso8583Codec.decode(payload)
+        val configuredCode = config.responseCode.filter(Char::isDigit).padStart(2, '0').takeLast(2)
+        val code = when {
+            request.forceDecline -> "51"
+            config.approvalLimit != null && request.amountMinor > config.approvalLimit -> "51"
+            !profile.supportsOffline && request.kind == POSTransactionKind.PURCHASE && configuredCode == "00" -> "00"
+            else -> configuredCode
+        }
+        val responseFields = linkedMapOf<Int, String>()
+        decoded.fields[3]?.let { responseFields[3] = it }
+        decoded.fields[4]?.let { responseFields[4] = it }
+        decoded.fields[7]?.let { responseFields[7] = it }
+        decoded.fields[11]?.let { responseFields[11] = it }
+        decoded.fields[12]?.let { responseFields[12] = it }
+        decoded.fields[13]?.let { responseFields[13] = it }
+        responseFields[37] = decoded.fields[37] ?: "000000000000"
+        responseFields[39] = code
+        if (code == "00" || code == "08" || code == "10") responseFields[38] = "A${decoded.fields[11]?.takeLast(5) ?: "00000"}"
+        decoded.fields[41]?.let { responseFields[41] = it }
+        decoded.fields[42]?.let { responseFields[42] = it }
+        decoded.fields[49]?.let { responseFields[49] = it }
+        if (config.echoEmvData) decoded.fields[55]?.let { responseFields[55] = it }
+        return Iso8583Codec.encode(Iso8583Message(responseMti(decoded.mti), responseFields))
+    }
+
+    private fun responseMti(request: String): String = when (request) {
+        "0100" -> "0110"
+        "0200" -> "0210"
+        "0220" -> "0230"
+        "0400" -> "0410"
+        else -> request.dropLast(1) + "1"
     }
 }
